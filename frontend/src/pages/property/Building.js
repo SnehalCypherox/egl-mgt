@@ -3,13 +3,13 @@ import CommonTable from '../../components/CommonTable'
 
 const Building = () => {
   const columns = [
-    { field: 'name', headerName: 'Name', width: 150 },
-    { field: 'address', headerName: 'Address', width: 250 },
-    { field: 'city', headerName: 'City', width: 150 },
-    { field: 'zipcode', headerName: 'ZIP Code', width: 150 },
-    { field: 'type', headerName: 'Type', width: 150 },
-    { field: 'team', headerName: 'Team', width: 150 },
-    { field: 'completed', headerName: 'Last Inspection Completed ', width: 200 },
+    { field: 'name', headerName: 'Name', width: 150, flex: 1 },
+    { field: 'address', headerName: 'Address', width: 250, flex: 1 },
+    { field: 'city', headerName: 'City', width: 150, flex: 1 },
+    { field: 'zipcode', headerName: 'ZIP Code', width: 150, flex: 1 },
+    { field: 'type', headerName: 'Type', width: 150, flex: 1 },
+    { field: 'team', headerName: 'Team', width: 150, flex: 1 },
+    { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, flex: 1 },
   ]
 
   const rows = [

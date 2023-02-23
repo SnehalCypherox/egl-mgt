@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import close from '../Assets/close.png'
-import warning from '../Assets/warning.png'
+import close from '../../Assets/close.png'
+import ChildModel from './ChildModel';
+import './model.css'
 
 const style = {
     position: 'absolute',
@@ -18,44 +19,7 @@ const style = {
     p: 4,
 };
 
-function ChildModal() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    return (
-        <>
-            <Button className='model-btn-light warning-close' onClick={handleOpen}>Cancel</Button>
-            <Modal
-                hideBackdrop
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-            >
-                <Box sx={{ ...style }} style={{ maxWidth: '430px' }}>
-                    <img src={warning} alt="warning icon" className='warning-icon' />
-                    <h2 id="child-modal-title" className='warning-msg'>Are you sure ?</h2>
-                    <p id="child-modal-description" className='warning-desc'>
-                        Do you want to exit and lose all your progress
-                        in creating this new unit?
-                    </p>
-                    <div className='warning-btn'>
-                        <Button className='model-btn-light' onClick={handleClose}>Go Back</Button>
-                        <Button className='model-btn-warning' onClick={handleClose}>Exit & Close</Button>
-                    </div>
-
-                </Box>
-            </Modal>
-        </>
-    );
-}
-
-export default function NestedModal() {
+const Model = () => {
     const [openModal, setOpenModal] = React.useState(false);
     const handleOpenModal = () => {
         setOpenModal(true);
@@ -87,9 +51,11 @@ export default function NestedModal() {
                     <div className='flex justify-end mt-40'>
                         <Button className='model-btn'>Next : Unit Type</Button>
                     </div>
-                    <ChildModal />
+                    <ChildModel parentClose={handleCloseModal} />
                 </Box>
             </Modal>
         </div>
-    );
+    )
 }
+
+export default Model

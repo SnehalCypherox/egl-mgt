@@ -61,7 +61,7 @@ input {
   object-fit: cover;
 }
 
-label {
+/* label {
   font-family: 'Poppins' !important;
   font-style: normal !important;
   font-weight: 600 !important;
@@ -69,7 +69,7 @@ label {
   line-height: 30px !important;
   letter-spacing: -0.02em !important;
   color: #524c4cb8 !important;
-}
+} */
 
 label input::placeholder {
   font-family: 'Poppins' !important;
@@ -520,24 +520,6 @@ ul.add-list li:hover {
   cursor: pointer;
 }
 
-.model-header {
-  text-align: center;
-}
-
-.model-header span {
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 33px;
-  color: #0071BC;
-}
-
-.model-header p {
-  font-size: 14px;
-  line-height: 21px;
-  color: #868686;
-  padding-top: 10px;
-}
-
 .model-box {
   border: unset !important;
   border-radius: 10px !important;
@@ -627,7 +609,7 @@ button {
 
 .warning-btn {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 50px;
 }
@@ -690,11 +672,11 @@ ul.menu-list li:hover {
   color: #0071BC;
 }
 
-ul.menu-list  {
+ul.menu-list {
   border-radius: 10px;
 }
 
-.tabs-content > div > div {
+.tabs-content>div>div {
   display: inline-grid !important;
 }
 
@@ -713,3 +695,25 @@ ul.menu-list  {
   right: 4.5%;
   top: 147px;
 }
+
+.tabing div>div>span {
+  background-color: transparent;
+}
+
+.filter-menu div:nth-child(3) {
+  left: 74.6% !important;
+  right: 4.5%;
+  top: 110px !important;
+}
+
+.tabing div div>div>[aria-selected="true"] {
+  background-color: #0071bc1a;
+  color: #000000;
+  font-weight: 600;
+}
+
+.tabing div div>div>[aria-selected="false"] {
+  color: #00000080;
+  font-weight: 500;
+}
+

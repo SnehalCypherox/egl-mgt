@@ -1,0 +1,21 @@
+.model-header {
+    text-align: center;
+}
+
+.model-header span {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+    color: #0071BC;
+}
+
+.model-header p {
+    font-size: 14px;
+    line-height: 21px;
+    color: #868686;
+    padding-top: 10px;
+}
+
+textarea:focus-visible {
+    border: 1px solid #0071BC;
+}

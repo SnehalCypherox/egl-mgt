@@ -1,9 +1,7 @@
 import React from 'react'
-import UnitBody from '../../components/CommonTable';
+import CommonTable from '../../components/CommonTable';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
 const Unit = () => {
 
@@ -20,15 +18,16 @@ const Unit = () => {
 
 
   const columns = [
-    { field: 'address', headerName: 'Address', width: 250, editable: false },
-    { field: 'city', headerName: 'City', width: 150, editable: false },
-    { field: 'zipcode', headerName: 'ZIP Code', width: 120, editable: false },
-    { field: 'type', headerName: 'Type', width: 130, editable: false },
-    { field: 'team', headerName: 'Team', width: 150, editable: false },
+    // { field: 'id', headerName: 'Id', width: 100, editable: false },
+    { field: 'address', headerName: 'Address', width: 250, editable: false, flex: 1 },
+    { field: 'city', headerName: 'City', width: 150, editable: false, flex: 1 },
+    { field: 'zipcode', headerName: 'ZIP Code', width: 150, editable: false, flex: 1 },
+    { field: 'type', headerName: 'Type', width: 150, editable: false, flex: 1 },
+    { field: 'team', headerName: 'Team', width: 150, editable: false, flex: 1 },
     { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, editable: false },
     {
-      field: "action", headerName: 'Action', width: 200, editable: false,
-      renderCell: (cellValues) => {
+      field: 'action', headerName: 'Action', width: 150, editable: false,
+      renderCell: () => {
         return (
           <>
             <MoreHorizIcon aria-describedby={id} onClick={handleClick} />
@@ -70,7 +69,8 @@ const Unit = () => {
   const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
 
   return (
-    <UnitBody
+    <CommonTable
+      className='unit-table'
       dropdownSub={subDataDropdown}
       dropdownTitle="New Property"
       rows={rows}

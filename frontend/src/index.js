@@ -11,10 +11,12 @@ import Settings from './pages/Settings';
 import Tenants from './pages/Tenants';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Model from './components/Model';
+import Model from './components/Model/Model';
 import Unit from './pages/property/Unit';
 import Building from './pages/property/Building';
 import Community from './pages/property/Community';
+import AddUnitData from './components/AddNewUnit/AddUnitData';
+import AddBuilding from './components/AddNewBuilding/AddBuilding';
 
 const AppLayout = () => {
   return (
@@ -77,6 +79,16 @@ const appRouter = createBrowserRouter([
         path: "model",
         element:
           <Model />
+      },
+      {
+        path: "add-unit",
+        element:
+          <AddUnitData />
+      },
+      {
+        path: "add-building",
+        element:
+          <AddBuilding />
       },
     ],
   },
