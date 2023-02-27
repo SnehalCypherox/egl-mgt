@@ -17,6 +17,10 @@ import Building from './pages/property/Building';
 import Community from './pages/property/Community';
 import AddUnitData from './components/AddNewUnit/AddUnitData';
 import AddBuilding from './components/AddNewBuilding/AddBuilding';
+import AddCommunity from './components/AddNewCommunity/AddCommunity';
+import Active from './pages/Inspections/Active';
+import Scheduled from './pages/Inspections/Scheduled';
+import Archive from './pages/Inspections/Archive';
 
 const AppLayout = () => {
   return (
@@ -24,7 +28,9 @@ const AppLayout = () => {
       <Header />
       <div className='flex'>
         <Sidebar />
-        <Outlet />
+        <div className='eagle-body'>
+          <Outlet />
+        </div>
       </div>
 
     </>
@@ -63,7 +69,24 @@ const appRouter = createBrowserRouter([
       {
         path: "/inspection",
         element:
-          <Inspections />
+          <>
+            <Inspections />
+            <Outlet />
+          </>, 
+          children: [
+            {
+              path: 'active',
+              element: <Active />
+            },
+            {
+              path: 'scheduled',
+              element: <Scheduled />
+            },
+            {
+              path: 'archive',
+              element: <Archive />
+            }
+          ]
       },
       {
         path: "tenants",
@@ -89,6 +112,11 @@ const appRouter = createBrowserRouter([
         path: "add-building",
         element:
           <AddBuilding />
+      },
+      {
+        path: "add-community",
+        element:
+          <AddCommunity />
       },
     ],
   },

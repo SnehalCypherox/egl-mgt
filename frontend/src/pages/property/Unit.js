@@ -2,6 +2,8 @@ import React from 'react'
 import CommonTable from '../../components/CommonTable';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Popover from '@mui/material/Popover';
+import AddNewDropdown from '../../components/AddNewDropdown';
+import FilterData from '../../components/FilterData';
 
 const Unit = () => {
 
@@ -63,20 +65,28 @@ const Unit = () => {
     { id: 7, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 8, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 9, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' }, 
+    { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
   ];
 
   const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
 
   return (
-    <CommonTable
-      className='unit-table'
-      dropdownSub={subDataDropdown}
-      dropdownTitle="New Property"
-      rows={rows}
-      columns={columns}
-      isCheckbox={true}
-    />
+    <>
+      <div className='unit-top'>
+        {/* <AddNewDropdown
+          dropdownTitle='New Property'
+          dropdownSub={subDataDropdown}
+        /> */}
+        <FilterData />
+      </div>
+      <CommonTable
+        className='unit-table'
+        rows={rows}
+        columns={columns}
+        isCheckbox={true}
+      />
+    </>
+
   )
 }
 

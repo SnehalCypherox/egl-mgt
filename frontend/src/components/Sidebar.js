@@ -52,16 +52,19 @@ const Sidebar = () => {
                 info: 'Inspections',
                 subData: [
                     {
+                        id: 1,
                         subname: 'Active',
-                        subpath: 'property/unit'
+                        subpath: 'inspection/active'
                     },
                     {
+                        id: 2,
                         subname: 'Scheduled',
-                        subpath: 'property/building'
+                        subpath: 'inspection/scheduled'
                     },
                     {
+                        id: 3,
                         subname: 'Archived',
-                        subpath: 'property/communities'
+                        subpath: 'inspection/archive'
                     }
                 ],
             },
@@ -72,14 +75,17 @@ const Sidebar = () => {
                 info: 'Tenants',
                 subData: [
                     {
+                        id: 1,
                         subname: 'Unit',
                         subpath: 'property/unit'
                     },
                     {
+                        id: 2,
                         subname: 'Buildings',
                         subpath: 'property/building'
                     },
                     {
+                        id: 3,
                         subname: 'Communities',
                         subpath: 'property/communities'
                     }
@@ -117,7 +123,7 @@ const Sidebar = () => {
                             <Typography variant="div" component="div">
                                 <div className='assets'>
                                     <img src={item.icon} alt="propertyIconBlue" style={{ marginRight: '20px' }} />
-                                    {item.info}
+                                    <span>{item.info}</span>
                                 </div>
                             </Typography>
                         </AccordionSummary>

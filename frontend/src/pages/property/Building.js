@@ -1,5 +1,7 @@
 import React from 'react'
+import AddNewDropdown from '../../components/AddNewDropdown';
 import CommonTable from '../../components/CommonTable'
+import FilterData from '../../components/FilterData';
 
 const Building = () => {
   const columns = [
@@ -29,13 +31,23 @@ const Building = () => {
 
 
   return (
-    <CommonTable
-      dropdownSub={subDataDropdown}
-      dropdownTitle="New Property"
-      rows={rows}
-      columns={columns}
-      checkboxSelection={false}
-    />
+    <>
+      <div className='unit-top'>
+        <AddNewDropdown
+          dropdownTitle='New Property'
+          dropdownSub={subDataDropdown}
+        />
+        <FilterData />
+      </div>
+      <CommonTable
+        dropdownSub={subDataDropdown}
+        dropdownTitle="New Property"
+        rows={rows}
+        columns={columns}
+        checkboxSelection={false}
+      />
+    </>
+
   )
 }
 

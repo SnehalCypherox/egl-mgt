@@ -16,15 +16,17 @@ h6.model-title {
     margin-top: 10px !important;
 }
 
-.model-input input {
+.model-input input, .building-input input, .community-input input {
     font-size: 12px !important;
     line-height: 18px !important;
-    color: rgba(255, 255, 255, 0.3) !important;
+    color: #000 !important;
 }
 
 .model-input {
     border-radius: 10px !important;
     margin: 10px;
+    width: 100%;
+    max-width: 310px;
 }
 
 .bedroom-detail {
@@ -51,4 +53,17 @@ h6.model-title {
     margin: 0 auto;
     width: 100%;
     max-width: 246px;
+}
+
+.select-team > button {
+    color: #0071bc;
+}
+.MuiSelect-listbox li:hover {
+    background-color: #FFFFFF;
+}
+.MuiSelect-listbox li {
+    background-color: #FFFFFF;
+}
+ul.MuiSelect-listbox {
+    border: unset;
 }

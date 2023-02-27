@@ -2,7 +2,8 @@ import React from 'react'
 
 const Settings = () => {
   return (
-    <h1>setting</h1>
+    alert ('hello I am setting dialog')
+    // <h1>setting</h1>
   )
 }
 

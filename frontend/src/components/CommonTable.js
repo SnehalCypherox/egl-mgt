@@ -1,15 +1,11 @@
 import React from 'react'
 import { DataGrid, useGridSelector, useGridApiContext, gridPageCountSelector, gridPageSelector } from '@mui/x-data-grid';
-import { Accordion, AccordionDetails, AccordionSummary, Pagination, Tab, Tabs, Typography, Box, Divider } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
-import filter from '../Assets/Filter.png'
+import { Pagination } from '@mui/material';
 import chatbox from '../Assets/ChatBox.png'
-import Popover from '@mui/material/Popover';
-import PropTypes from 'prop-types';
-import AddNew from './AddNew';
+import AddNewDropdown from './AddNewDropdown';
 import FilterData from './FilterData';
 
-const CommonTable = ({ columns, rows, isCheckbox, dropdownTitle, dropdownSub, }) => {
+const CommonTable = ({ columns, rows, isCheckbox }) => {
 
   function CustomPagination() {
     const apiRef = useGridApiContext();
@@ -24,15 +20,15 @@ const CommonTable = ({ columns, rows, isCheckbox, dropdownTitle, dropdownSub, })
       />
     )
   }
+  const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
 
   return (
-    <div className='unitbody' style={{ position: 'relative', marginRight: '20px' }}>
-      <AddNew
-        dropdownTitle={dropdownTitle}
-        dropdownSub={dropdownSub}
+    <>
+      <AddNewDropdown
+        dropdownTitle='New Property'
+        dropdownSub={subDataDropdown}
       />
-      <FilterData />
-      <div className='table-grid' style={{ height: 400, width: '100%', marginTop: '7%' }}>
+      <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '65px' }}>
         <DataGrid
           className='tble-class'
           rows={rows}
@@ -50,7 +46,7 @@ const CommonTable = ({ columns, rows, isCheckbox, dropdownTitle, dropdownSub, })
       <div className='chat-box'>
         <img src={chatbox} alt="" />
       </div>
-    </div>
+    </>
   )
 }
 

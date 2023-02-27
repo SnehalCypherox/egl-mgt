@@ -17,7 +17,7 @@ const style = {
     p: 4,
 };
 
-const ChildModel = ({parentClose}) => {
+const ChildModel = ({parentClose, closeBtn}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -25,6 +25,7 @@ const ChildModel = ({parentClose}) => {
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
         <>
             <Button className='model-btn-light warning-close' onClick={handleOpen}>Cancel</Button>

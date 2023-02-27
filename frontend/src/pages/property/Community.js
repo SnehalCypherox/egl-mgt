@@ -1,15 +1,17 @@
 import React from 'react'
+import AddNewDropdown from '../../components/AddNewDropdown';
 import CommonTable from '../../components/CommonTable'
+import FilterData from '../../components/FilterData';
 
 const Community = () => {
   const columns = [
-    { field: 'name', headerName: 'Name', width: 150, flex: 1},
-    { field: 'address', headerName: 'Address', width: 250, flex: 1},
-    { field: 'city', headerName: 'City', width: 150, flex: 1},
-    { field: 'zipcode', headerName: 'ZIP Code', width: 150, flex: 1},
-    { field: 'type', headerName: 'Type', width: 150, flex: 1},
-    { field: 'team', headerName: 'Team', width: 150, flex: 1},
-    { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, flex: 1},
+    { field: 'name', headerName: 'Name', width: 150, flex: 1 },
+    { field: 'address', headerName: 'Address', width: 250, flex: 1 },
+    { field: 'city', headerName: 'City', width: 150, flex: 1 },
+    { field: 'zipcode', headerName: 'ZIP Code', width: 150, flex: 1 },
+    { field: 'type', headerName: 'Type', width: 150, flex: 1 },
+    { field: 'team', headerName: 'Team', width: 150, flex: 1 },
+    { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, flex: 1 },
   ]
 
   const rows = [
@@ -28,13 +30,23 @@ const Community = () => {
   const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
 
   return (
-    <CommonTable
-      dropdownSub={subDataDropdown}
-      dropdownTitle="New Property"
-      rows={rows}
-      columns={columns}
-      checkboxSelection={false}
-    />
+    <>
+      <div className='unit-top'>
+        <AddNewDropdown
+          dropdownTitle='New Property'
+          dropdownSub={subDataDropdown}
+        />
+        <FilterData />
+      </div>
+      <CommonTable
+        dropdownSub={subDataDropdown}
+        dropdownTitle="New Property"
+        rows={rows}
+        columns={columns}
+        checkboxSelection={false}
+      />
+    </>
+
   )
 }
 

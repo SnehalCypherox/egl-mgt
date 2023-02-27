@@ -90,9 +90,7 @@ const FilterData = () => {
                     </div>
                 </div>
             </Popover>
-
-            {/*  */}
-            <div className='filter cursor-pointer' onClick={handleClick} aria-describedby={id} style={{ position: 'absolute', right: '0', top: '30px' }}>
+            <div className='filter cursor-pointer' onClick={handleClick} aria-describedby={id} style={{ position: 'absolute', right: '0', top: '0' }}>
                 <img src={filter} alt="" height='30px' width='38px' />
             </div>
         </>
