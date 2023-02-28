@@ -21,6 +21,8 @@ import AddCommunity from './components/AddNewCommunity/AddCommunity';
 import Active from './pages/Inspections/Active';
 import Scheduled from './pages/Inspections/Scheduled';
 import Archive from './pages/Inspections/Archive';
+import chatbox from './Assets/ChatBox.png'
+import UnitDetail from './components/UnitDetails/UnitDetail';
 
 const AppLayout = () => {
   return (
@@ -30,6 +32,9 @@ const AppLayout = () => {
         <Sidebar />
         <div className='eagle-body'>
           <Outlet />
+          <div className='chat-box'>
+            <img src={chatbox} alt="" />
+          </div>
         </div>
       </div>
 
@@ -72,21 +77,21 @@ const appRouter = createBrowserRouter([
           <>
             <Inspections />
             <Outlet />
-          </>, 
-          children: [
-            {
-              path: 'active',
-              element: <Active />
-            },
-            {
-              path: 'scheduled',
-              element: <Scheduled />
-            },
-            {
-              path: 'archive',
-              element: <Archive />
-            }
-          ]
+          </>,
+        children: [
+          {
+            path: 'active',
+            element: <Active />
+          },
+          {
+            path: 'scheduled',
+            element: <Scheduled />
+          },
+          {
+            path: 'archive',
+            element: <Archive />
+          }
+        ]
       },
       {
         path: "tenants",
@@ -97,6 +102,11 @@ const appRouter = createBrowserRouter([
         path: "setting",
         element:
           <Settings />
+      },
+      {
+        path: "addUnitDetail",
+        element:
+          <UnitDetail />
       },
       {
         path: "model",

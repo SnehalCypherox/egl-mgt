@@ -30,16 +30,16 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
     const [currentStep, setCurrentStep] = React.useState(1);
     const [openUnitModel, setOpenUnitModel] = React.useState(false);
 
-    const handleOpenModal = () => {
-        setOpenUnitModel(true);
-    };
+    // const handleOpenModal = () => {
+    //     setOpenUnitModel(true);
+    // };
     const handleCloseModal = () => {
         setOpenUnitModel(false);
     };
 
     const navigate = useNavigate();
 
-    
+
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
@@ -77,19 +77,16 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
         // console.log("Enter into  getButtonLable ::" + step);
         return buttonList.find((button) => button.step === step).label;
     };
-    
+
     const nextStep = () => {
-        // console.log((buttonList === buttonList[6]) ? true : false);
-        console.log(buttonList[6]);
-        if (buttonList === buttonList[6]) {
+        // console.log(currentStep);
+        if (currentStep === 7) {
             navigate('/inspection/active')
         }
         else {
             setCurrentStep(currentStep + 1);
         }
     };
-
-
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -100,31 +97,11 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
         setAnchorEl(null);
     };
 
-
-    const Dummy = () => {
-        alert('hello I am dummy alert')
+    function openModelHandler() {
+        setOpenUnitModel(true);
     }
 
 
-
-    function modelCall() {
-        if (dropdownSub[0]) {
-            <Dummy />
-            // <AddUnitData currentStep={currentStep} />
-        }
-        else if (dropdownSub[1]) {
-            <AddBuilding currentStep={currentStep} />
-        }
-        else if (dropdownSub[2]) {
-            <AddCommunity currentStep={currentStep} />
-        }
-        else if (dropdownSub[3]) {
-            <h1>Upload data</h1>
-        }
-        else {
-            console.log('model steps ends');
-        }
-    }
 
 
     return (
@@ -137,6 +114,12 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
                 variant="contained"
                 disableElevation
                 onClick={handleClick}
+                sx={{
+                    backgroundColor: '#0071BC',
+                    border: '1px solid #0071BC',
+                    borderRadius: '5px',
+                    padding: '10px 55px'
+                }}
                 endIcon={<KeyboardArrowDownIcon />}
             >
                 {dropdownTitle}
@@ -147,14 +130,13 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
                 open={open}
                 onClose={handleClose}
             >
-                {dropdownSub.map(subData => {
+                {dropdownSub.map(DropdownData => {
                     return (
-                        <MenuItem key={subData} onClick={() => {
-                            subData === 'Add New Unit' ? handleOpenModal() : alert('condition false')
-
-                            console.log('clicked : ' + subData);
-                        }}>
-                            {subData}
+                        <MenuItem className='property-dropdown-item' key={DropdownData} onClick={() => {
+                            openModelHandler()
+                        }
+                        }>
+                            {DropdownData}
                         </MenuItem>
                     )
                 })}
@@ -173,30 +155,21 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
                             <p>Fill out the details below to add a unit.</p>
                         </div>
                         <Typography variant='div' id="modal-modal-description" sx={{ mt: 2 }}>
-                            {/* {console.log('model data called', modelCall())} */}
-                            {/* {console.log('dropdown list :::', dropdownSub[0])} */}
-                            {
-                                dropdownSub[0] === 'Add New Unit' ? <AddUnitData currentStep={currentStep} /> : console.log('not work')
-                            }
-
-
-                            {/* {modelCall()} */}
-                            {/* {console.log('hello')} */}
-                            {/* <AddUnitData currentStep={currentStep} /> */}
-                            {/* <AddBuilding currentStep={currentStep} /> */}
-                            {/* <AddCommunity currentStep={currentStep} /> */}
+                            {/* {console.log(dropdownSub)} */}
+                           
+                            {/* {dropdownSub[1] === 'Add New Building' && <AddBuilding currentStep={currentStep} />} */}
+                            {dropdownSub[2] === 'Add New Community' && <AddCommunity currentStep={currentStep} />}
+                            {/* {dropdownSub[3] === 'Upload units' && alert('upload data alert')} */}
                         </Typography>
                         <div className='flex justify-end mt-40'>
-                            <Button className={
-                                `${buttonList.filter((button) => button.step === 1) ? 'block' : 'hidden'} model-btn-light`
-                            } onClick={prevStep}>Back</Button>
+                            {(currentStep !== 1 && currentStep !== 7) && <Button className='model-btn-light' onClick={prevStep}>Back</Button>}
                             <Button className='model-btn' onClick={nextStep}>{getButtonLable(currentStep)}</Button>
                         </div>
-                        <ChildModel parentClose={handleCloseModal} />
+                        <ChildModel parentClose={handleCloseModal} currentStep={currentStep} />
                     </Box>
                 </Modal>
             </Menu>
-        </div>
+        </div >
     )
 }
 

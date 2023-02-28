@@ -1,0 +1,51 @@
+.detail-header {
+    background-color: #0071BC1a;
+    padding: 30px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.detail-header h2.address {
+    color: #0071BC;
+    font-size: 22px;
+    line-height: 33px;
+}
+
+.detail-header p.edit-data {
+    font-size: 14px;
+    line-height: 21px;
+    color: #808080;
+    padding-top: 10px;
+}
+
+.detail-header p.edit-data span {
+    padding-right: 10px;
+}
+
+div.detail-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.detail-tab img {
+    height: auto;
+    max-height: 144px;
+}
+
+.tab-content [data-rowindex="0"],
+.tab-content [data-rowindex="1"],
+.tab-content [data-rowindex="2"] {
+    font-weight: 600;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-header button{
+    padding: 13px 30px;
+}
+

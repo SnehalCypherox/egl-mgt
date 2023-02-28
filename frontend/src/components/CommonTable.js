@@ -24,11 +24,11 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
 
   return (
     <>
-      <AddNewDropdown
+      {/* <AddNewDropdown
         dropdownTitle='New Property'
         dropdownSub={subDataDropdown}
-      />
-      <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '65px' }}>
+      /> */}
+      <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '30px' }}>
         <DataGrid
           className='tble-class'
           rows={rows}
@@ -41,11 +41,12 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
           components={{
             Pagination: CustomPagination,
           }}
+          onRowClick={(e) => console.log(e)}
         />
       </div>
-      <div className='chat-box'>
+      {/* <div className='chat-box'>
         <img src={chatbox} alt="" />
-      </div>
+      </div> */}
     </>
   )
 }

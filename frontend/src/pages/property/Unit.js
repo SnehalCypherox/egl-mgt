@@ -55,8 +55,9 @@ const Unit = () => {
     }
   ]
 
+
   const rows = [
-    { id: 1, city: 'Sacramento', address: '9983 Aspen Meadows Ct', zipcode: '95829-8033', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: <MoreHorizIcon className='hello-menu' /> },
+    { id: 1, city: 'Sacramento', address: '9983 Aspen Meadows Ct', zipcode: '95829-8033', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 2, city: 'Elk Grove', address: '9979 Tarzo Way', zipcode: '95757-3021', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 3, city: 'Elk Grove', address: '9920 Trapani Way', zipcode: '95757-0000', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 4, city: 'Sacramento', address: '9836 Mars Way', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
@@ -68,15 +69,18 @@ const Unit = () => {
     { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
   ];
 
+  console.log('unit table row', rows[0]);
+  
+
   const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
 
   return (
     <>
       <div className='unit-top'>
-        {/* <AddNewDropdown
+        <AddNewDropdown
           dropdownTitle='New Property'
           dropdownSub={subDataDropdown}
-        /> */}
+        />
         <FilterData />
       </div>
       <CommonTable
@@ -84,7 +88,12 @@ const Unit = () => {
         rows={rows}
         columns={columns}
         isCheckbox={true}
+        onClick={(rows) => {
+          (rows[0]) ? console.log('row') : console.log('row clicked');
+        }
+      }
       />
+      
     </>
 
   )

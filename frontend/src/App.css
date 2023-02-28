@@ -558,7 +558,7 @@ ul.add-list li:hover {
 .warning-close {
   position: absolute !important;
   bottom: 32px;
-  right: 41.5%;
+  right: 30.5%;
 }
 
 .justify-end {
@@ -578,7 +578,7 @@ ul.add-list li:hover {
 .chat-box {
   position: absolute;
   bottom: 10px;
-  right: 0;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -726,4 +726,10 @@ ul.menu-list {
 .tabing div div>div>[aria-selected="false"] {
   color: #00000080;
   font-weight: 500;
+}
+
+.property-dropdown {
+  background-color: #0071BC;
+  border: 1px solid #0071BC;
+  border-radius: 5px;
 }

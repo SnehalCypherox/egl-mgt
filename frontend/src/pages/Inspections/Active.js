@@ -95,11 +95,11 @@ const Active = () => {
 
     <>
       <div className='unit-top'>
-        {/* <AddNewDropdown
+        <AddNewDropdown
           dropdownTitle='New Inspection'
           dropdownSub={subDataDropdown}
         />
-        <FilterData /> */}
+        <FilterData />
       </div>
       <CommonTable
         className='unit-table'
