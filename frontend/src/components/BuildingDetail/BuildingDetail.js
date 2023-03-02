@@ -1,45 +1,23 @@
 import React from 'react'
-import update from '../../Assets/update.png'
-import './UnitDetail.css'
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import CommonTable from '../CommonTable';
-import detailBuilding from '../../Assets/detailBuilding.png'
-import { Typography } from '@mui/material';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Typography, Tab, Box } from '@mui/material';
+import { Check } from '@mui/icons-material';
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
-import { Check } from '@mui/icons-material';
+import update from '../../Assets/update.png'
+import detailBuilding from '../../Assets/detailBuilding.png'
 
-const UnitDetail = () => {
+const BuildingDetail = () => {
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
-    const columns = [
-        { field: 'typesOfInspection', headerName: 'Type of Inspection', width: 150, editable: false, flex: 1 },
-        { field: 'dueDate', headerName: 'Due Date', width: 150, editable: false, flex: 1 },
-        {
-            field: 'status', headerName: 'Status', width: 150, editable: false, flex: 1,
-
-        },
-    ]
-
-    const rows = [
-        { id: 1, typesOfInspection: 'Annual', dueDate: '10/19/2030', status: 'Scheduled' },
-        { id: 2, typesOfInspection: 'Annual', dueDate: '10/19/2029', status: 'Scheduled' },
-        { id: 3, typesOfInspection: 'Annual', dueDate: '10/19/2028', status: 'Scheduled' },
-    ];
-
     return (
         <>
             <div className='detail-header'>
                 <div className='left-detail'>
-                    <h2 className='address'>9983 Aspen Meadows Ct</h2>
+                    <h2 className='address'>Building Name</h2>
                     <p className='edit-data'>
                         <span>Sacramento</span>
                         <span>95829-8033</span>
@@ -48,7 +26,7 @@ const UnitDetail = () => {
                                 width: '10px'
                             }} />
                     </p>
-                    <p className='edit-data'>Eagle Property Management</p>
+                    <p className='edit-data'>Eagle Property Management(Admin)</p>
                 </div>
                 <div className='right-detail-btn'>
                     <Button sx={{
@@ -64,33 +42,21 @@ const UnitDetail = () => {
                 <div className='unit-detail-quick-edit'>
                     <div>
                         <div className='unit-detail-menu-edit cursor-pointer'>
-                            <Typography className='mainTitle'>Bedrooms</Typography>
+                            <Typography className='mainTitle'>Ameniitie</Typography>
                             <img src={update} alt="update icon" height='10px' />
                         </div>
                         <div className='unit-detail-subMenu'>
-                            <Typography className='subTitle'>Bedrooms</Typography>
-                            <Check fontSize='10px' color='#00000080' />
-                        </div>
-                        <div className='unit-detail-subMenu'>
-                            <Typography className='subTitle'>Second Bedroo...</Typography>
-                            <Check fontSize='10px' color='#00000080' />
-                        </div>
-                        <div className='unit-detail-subMenu'>
-                            <Typography className='subTitle'>Third Bedroom</Typography>
+                            <Typography className='subTitle'>Courtyard(s)</Typography>
                             <Check fontSize='10px' color='#00000080' />
                         </div>
                     </div>
                     <div>
                         <div className='unit-detail-menu-edit cursor-pointer'>
-                            <Typography className='mainTitle'>Full Bathroom</Typography>
+                            <Typography className='mainTitle'>Number of building</Typography>
                             <img src={update} alt="update icon" height='10px' />
                         </div>
                         <div className='unit-detail-subMenu'>
-                            <Typography className='subTitle'>Full Bathroom</Typography>
-                            <Check fontSize='10px' color='#00000080' />
-                        </div>
-                        <div className='unit-detail-subMenu'>
-                            <Typography className='subTitle'>Second Full Bath...</Typography>
+                            <Typography className='subTitle'>12 Floors</Typography>
                             <Check fontSize='10px' color='#00000080' />
                         </div>
                     </div>
@@ -123,12 +89,23 @@ const UnitDetail = () => {
                         </Box>
 
                         <div className='tab-content'>
-                            <TabPanel value="1">
-                                <CommonTable
-                                    rows={rows}
-                                    columns={columns}
-                                    isCheckbox={false}
-                                />
+                            <TabPanel value="1" sx={{ pt: '122px', }}>
+                                <div className='detail-tab'>
+                                    <img src={detailBuilding} alt="detailBuilding" />
+                                    <Typography variant='h5' component='h5'
+                                        sx={{
+                                            fontWeight: '600',
+                                            fontSize: '20px',
+                                            lineHeight: '30px',
+                                            color: '#0071BC',
+                                            pt: '15px'
+                                        }}>
+                                        No Inspections Yet
+                                    </Typography>
+                                    <Typography sx={{ color: '#80808080', fontWeight: 500, fontSize: '18px', lineHeight: '27px' }}>
+                                        Get started setting up your first inspection.
+                                    </Typography>
+                                </div>
                             </TabPanel>
                             <TabPanel value="2" sx={{ pt: '122px', }}>
                                 <div className='detail-tab'>
@@ -168,4 +145,4 @@ const UnitDetail = () => {
     )
 }
 
-export default UnitDetail
+export default BuildingDetail

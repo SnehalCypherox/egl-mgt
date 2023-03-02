@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CommonTable from './CommonTable';
-import Settings from '../pages/Settings';
+import Settings from '../pages/setting/Settings';
 import AddBuilding from './AddNewBuilding/AddBuilding';
 import AddCommunity from './AddNewCommunity/AddCommunity';
 import { Box, Modal, Typography } from '@mui/material';
@@ -102,8 +102,6 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
     }
 
 
-
-
     return (
         <div>
             <Button
@@ -157,8 +155,8 @@ const AddNewDropdown = ({ dropdownTitle, dropdownSub }) => {
                         <Typography variant='div' id="modal-modal-description" sx={{ mt: 2 }}>
                             {/* {console.log(dropdownSub)} */}
                            
-                            {/* {dropdownSub[1] === 'Add New Building' && <AddBuilding currentStep={currentStep} />} */}
-                            {dropdownSub[2] === 'Add New Community' && <AddCommunity currentStep={currentStep} />}
+                            {dropdownSub[1] === 'Add New Building' && <AddBuilding currentStep={currentStep} />}
+                            {/* {dropdownSub[2] === 'Add New Community' && <AddCommunity currentStep={currentStep} />} */}
                             {/* {dropdownSub[3] === 'Upload units' && alert('upload data alert')} */}
                         </Typography>
                         <div className='flex justify-end mt-40'>

@@ -20,12 +20,11 @@ const Unit = () => {
 
 
   const columns = [
-    // { field: 'id', headerName: 'Id', width: 100, editable: false },
     { field: 'address', headerName: 'Address', width: 250, editable: false, flex: 1 },
-    { field: 'city', headerName: 'City', width: 150, editable: false, flex: 1 },
-    { field: 'zipcode', headerName: 'ZIP Code', width: 150, editable: false, flex: 1 },
-    { field: 'type', headerName: 'Type', width: 150, editable: false, flex: 1 },
-    { field: 'team', headerName: 'Team', width: 150, editable: false, flex: 1 },
+    { field: 'city', headerName: 'City', width: 150, editable: false },
+    { field: 'zipcode', headerName: 'ZIP Code', width: 150, editable: false },
+    { field: 'type', headerName: 'Type', width: 150, editable: false },
+    { field: 'team', headerName: 'Team', width: 150, editable: false },
     { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, editable: false },
     {
       field: 'action', headerName: 'Action', width: 150, editable: false,
@@ -53,9 +52,7 @@ const Unit = () => {
         );
       }
     }
-  ]
-
-
+  ] 
   const rows = [
     { id: 1, city: 'Sacramento', address: '9983 Aspen Meadows Ct', zipcode: '95829-8033', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 2, city: 'Elk Grove', address: '9979 Tarzo Way', zipcode: '95757-3021', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },

@@ -101,8 +101,8 @@ const Model = ({openModel}) => {
                     </div>
                     <Typography variant='div' id="modal-modal-description" sx={{ mt: 2 }}>
                         {/* {console.log('hello')} */}
-                        <AddUnitData currentStep={currentStep} />
-                        {/* <AddBuilding currentStep={currentStep} /> */}
+                        {/* <AddUnitData currentStep={currentStep} /> */}
+                        <AddBuilding currentStep={currentStep} />
                         {/* <AddCommunity currentStep={currentStep} /> */}
                     </Typography>
                     <div className='flex justify-end mt-40'>

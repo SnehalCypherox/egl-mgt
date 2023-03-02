@@ -38,15 +38,17 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
           rowsPerPageOptions={[5]}
           showColumnRightBorder={false}
           experimentalFeatures={{ newEditingApi: true }}
+          disableSelectionOnClick={true}
+          disableColumnSelector={true}
           components={{
             Pagination: CustomPagination,
           }}
-          onRowClick={(e) => console.log(e)}
+          onRowClick={(e) => {
+            
+            console.log(e.row)
+          }}
         />
       </div>
-      {/* <div className='chat-box'>
-        <img src={chatbox} alt="" />
-      </div> */}
     </>
   )
 }

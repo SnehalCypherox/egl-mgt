@@ -1,0 +1,52 @@
+.tab-items button {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    max-width: 57px;
+    margin-left: 40px;
+}
+.tab-items button:focus {
+    outline: unset;
+}
+.tab-items {
+    background-color: #0071BC !important;
+    border-radius: 10px 10px 0px 0px !important;
+    justify-content: left !important;
+    box-shadow: none !important;
+}
+.tab-items button.bill-icon[aria-selected="false"] {
+    background-image: url(../../Assets/billingWhite.png);
+    padding: 22px;
+    background-position: center;
+    background-size: 24px;
+    background-repeat: no-repeat;
+}
+.tab-items button.integration-icon[aria-selected="false"] {
+    background-image: url(../../Assets/integrationWhite.png);
+    padding: 22px;
+    background-position: center;
+    background-size: 24px;
+    background-repeat: no-repeat;
+}
+.tab-items button.bill-icon[aria-selected="true"] {
+    background-image: url(../../Assets/billingBlue.png);
+    padding: 22px;
+    background-position: center;
+    background-size: 24px;
+    background-repeat: no-repeat;
+}
+.tab-items button.integration-icon[aria-selected="true"] {
+    background-image: url(../../Assets/integrationBlue.png);
+    padding: 22px;
+    background-position: center;
+    background-size: 24px;
+    background-repeat: no-repeat;
+}
+
+.tab-data{
+    border: unset !important;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+}
+.user-email {
+    color: #0071BC !important;
+}

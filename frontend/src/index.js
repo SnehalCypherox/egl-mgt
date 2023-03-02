@@ -7,7 +7,7 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Properties from './pages/Properties';
 import Inspections from './pages/Inspections';
-import Settings from './pages/Settings';
+import Settings from './pages/setting/Settings';
 import Tenants from './pages/Tenants';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -23,6 +23,10 @@ import Scheduled from './pages/Inspections/Scheduled';
 import Archive from './pages/Inspections/Archive';
 import chatbox from './Assets/ChatBox.png'
 import UnitDetail from './components/UnitDetails/UnitDetail';
+import BuildingDetail from './components/BuildingDetail/BuildingDetail';
+import CommunityDetail from './components/CommunityDetail/CommunityDetail';
+import EditProfile from './pages/setting/EditProfile';
+import UpdatePassword from './pages/setting/UpdatePassword';
 
 const AppLayout = () => {
   return (
@@ -104,9 +108,29 @@ const appRouter = createBrowserRouter([
           <Settings />
       },
       {
+        path: "edit-profile",
+        element:
+          <EditProfile />
+      },
+      {
+        path: "update-password",
+        element:
+          <UpdatePassword />
+      },
+      {
         path: "addUnitDetail",
         element:
           <UnitDetail />
+      },
+      {
+        path: "addBuildingDetail",
+        element:
+          <BuildingDetail />
+      },
+      {
+        path: "addCommunityDetail",
+        element:
+          <CommunityDetail />
       },
       {
         path: "model",

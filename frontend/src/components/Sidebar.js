@@ -99,7 +99,7 @@ const Sidebar = () => {
                 subData: [
                     {
                         subname: 'Profile Settings',
-                        subpath: 'property/unit'
+                        subpath: 'setting'
                     }
                 ],
             }

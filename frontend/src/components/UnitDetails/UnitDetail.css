@@ -45,7 +45,42 @@ div.detail-tab img {
     align-items: center;
 }
 
-.detail-header button{
+.detail-header button {
     padding: 13px 30px;
 }
 
+.unit-detail-quick-edit {
+    padding: 1%;
+    margin-top: 5.4%;
+}
+
+.unit-detail-quick-edit > div {
+    padding-top: 20px;
+}
+
+.unit-detail-quick-edit .quick-edit {
+    padding-bottom: 20px;
+}
+
+.unit-detail-menu-edit {
+    display: flex;
+    align-items: baseline;
+}
+
+.unit-detail-menu-edit p.mainTitle {
+    font-weight: 500;
+    font-size: 16px;
+    color: #0071bc;
+    width: 130px;
+}
+
+.unit-detail-subMenu {
+    display: flex;
+}
+
+.unit-detail-subMenu p.subTitle {
+    font-weight: 500;
+    font-size: 13px;
+    color: #00000080;
+    width: 130px;
+}
