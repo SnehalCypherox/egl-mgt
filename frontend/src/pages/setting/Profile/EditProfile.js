@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Divider from "@mui/material/Divider";
 import { Button, OutlinedInput, Typography } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 
 const EditProfile = () => {
@@ -8,6 +9,9 @@ const EditProfile = () => {
   const email = 'iamwebdevcarlo@gmail.com';
   const [userName, setUserName] = useState(Username);
   const [userEmail, setUserEmail] = useState(email);
+
+  const navigate = useNavigate();
+
   return (
     <div className="profile-edit">
       <Typography sx={{ color: '#0071BC', fontWeight: 600, fontSize: '22px', lineHeight: '33px', textTransform: 'capitalize' }}>Edit Profile</Typography>
@@ -52,7 +56,7 @@ const EditProfile = () => {
           <Button sx={{
             borderRadius: '10px', background: '#0071BC1a', m: '5px', color: '#000000', py: '13px', px: '30px', fontWeight: 600, fontSize: '16px', lineHeight: '24px',
             '&:hover': { backgroundColor: '#0071BC1a' }
-          }}>Cancel</Button>
+          }} onClick={() => navigate('/setting')}>Cancel</Button>
           <Button variant="contained" sx={{ borderRadius: '10px', m: '5px', background: '#0071BC', py: '13px', px: '30px', fontWeight: 500, fontSize: '16px', lineHeight: '24px' }}>
             Save
           </Button>

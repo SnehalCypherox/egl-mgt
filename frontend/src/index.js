@@ -11,7 +11,7 @@ import Settings from './pages/setting/Settings';
 import Tenants from './pages/Tenants';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Model from './components/Model/Model';
+import Model from './components/Model/EditModel';
 import Unit from './pages/property/Unit';
 import Building from './pages/property/Building';
 import Community from './pages/property/Community';
@@ -25,8 +25,8 @@ import chatbox from './Assets/ChatBox.png'
 import UnitDetail from './components/UnitDetails/UnitDetail';
 import BuildingDetail from './components/BuildingDetail/BuildingDetail';
 import CommunityDetail from './components/CommunityDetail/CommunityDetail';
-import EditProfile from './pages/setting/EditProfile';
-import UpdatePassword from './pages/setting/UpdatePassword';
+import EditProfile from './pages/setting/Profile/EditProfile';
+import UpdatePassword from './pages/setting/Profile/UpdatePassword';
 
 const AppLayout = () => {
   return (

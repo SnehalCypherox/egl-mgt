@@ -33,7 +33,7 @@ const AddBuilding = ({ currentStep }) => {
 
     function getBuildingModelData(steps) {
         switch (steps) {
-            case 1:
+            case 0:
                 return (
                     <div className='building-model-1' style={{ margin: '0 auto' }}>
                         <Typography variant='h6' className=" model-title">
@@ -115,7 +115,7 @@ const AddBuilding = ({ currentStep }) => {
                         </Grid>
                     </div>
                 )
-            case 2:
+            case 1:
                 return (
                     <div className='building-model-2' style={{ margin: '0 auto' }}>
                         <Typography variant='h6' className=" model-title">
@@ -132,7 +132,7 @@ const AddBuilding = ({ currentStep }) => {
                         </Grid>
                     </div>
                 )
-            case 3:
+            case 2:
                 return (
                     <div className='building-model-3' style={{ margin: '0 auto' }}>
                         <Typography variant='h6' className=" model-title">
@@ -163,7 +163,7 @@ const AddBuilding = ({ currentStep }) => {
                         </FormControl>
                     </div>
                 )
-            case 4:
+            case 3:
                 return (
                     <div className='building-model-4' style={{ margin: '0 auto' }}>
                         <Typography variant='h6' className=" model-title">
@@ -207,7 +207,7 @@ const AddBuilding = ({ currentStep }) => {
                         </Paper>
                     </div>
                 )
-            case 5:
+            case 4:
                 return (
                     <div className='building-model-5' style={{ margin: '0 auto' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', }}>

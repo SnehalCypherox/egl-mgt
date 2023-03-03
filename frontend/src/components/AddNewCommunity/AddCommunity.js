@@ -7,10 +7,6 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 import home from '../../Assets/house.png'
 
-
-
-
-
 const AddCommunity = ({ currentStep }) => {
   const [communityName, setCommunityName] = useState('')
   const [address1, setAddress1] = useState('')
@@ -21,7 +17,7 @@ const AddCommunity = ({ currentStep }) => {
 
   function getCommunityModelData(steps) {
     switch (steps) {
-      case 1:
+      case 0:
         return (
           <div className='community-model-1' style={{ margin: '0 auto' }}>
             <Typography variant='h6' className=" model-title" sx={{ ml: '10px' }}>
@@ -103,7 +99,7 @@ const AddCommunity = ({ currentStep }) => {
             </Grid>
           </div>
         )
-      case 2:
+      case 1:
         return (
           <div className='community-model-2' style={{ margin: '0 auto' }}>
             <Typography variant='h6' className=" model-title">
@@ -148,7 +144,7 @@ const AddCommunity = ({ currentStep }) => {
             </Paper>
           </div>
         )
-      case 3:
+      case 2:
         return (
           <div className='community-model-3' style={{ margin: '0 auto' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', }}>

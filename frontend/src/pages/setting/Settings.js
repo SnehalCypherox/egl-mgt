@@ -7,16 +7,13 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import { BorderColor, Group, Groups, Person } from '@mui/icons-material';
-import integrationBlue from '../../Assets/integrationBlue.png'
-import integrationWhite from '../../Assets/integrationWhite.png'
-import billingBlue from '../../Assets/billingBlue.png'
-import billingWhite from '../../Assets/billingWhite.png'
 import './Setting.css'
 import { Button, Divider, Input, Typography } from '@mui/material';
-import profile from '../../Assets/profile.png'
 import { Link } from 'react-router-dom';
-import EditProfile from './EditProfile';
-import Team from './Team';
+import Profile from './Profile/Profile';
+import Billing from './Billing';
+import Integration from './Integration';
+import Team from './Team/Team';
 
 const blue = {
   50: '#F0F7FF',
@@ -123,36 +120,16 @@ const Settings = () => {
       <TabPanel value={3} className='tab-data' sx={{ color: '#0071BC', fontWeight: 600, fontSize: '22px', lineHeight: '33px', textTransform: 'capitalize' }}>Integrations</TabPanel>
       <Divider />
       <TabPanel value={0} className='tab-data'>
-        <Typography variant='div' component='div' sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <img src={profile} alt="profile image" style={{ width: '100%', maxWidth: '267px' }} />
-          <div className='user-info'>
-            <Typography variant='h5' component='h5' sx={{ color: '#000000', fontWeight: '600', fontSize: '22px', lineHeight: '33px' }}>Carlo S</Typography>
-            <Typography variant='span' sx={{ fontWeight: '400', fontSize: '16px', lineHeight: '24px', color: '#808080' }}>Property Manager</Typography>
-            <Typography variant='div' component='div' sx={{ fontWeight: '400', fontSize: '16px', lineHeight: '24px', color: '#808080', pt: '25px' }}>
-              Email : <Link to='mailto:iamwebdevcarlo@gmail.com' className='user-email'>iamwebdevcarlo@gmail.com</Link>
-            </Typography>
-          </div>
-        </Typography>
-        <div className='btns' style={{ position: 'absolute', bottom: '62px', right: '20px' }}>
-          <Link to='/update-password'>
-            <Button sx={{
-              borderRadius: '10px', background: '#0071BC1a', m: '5px', color: '#000000', py: '13px', px: '30px', fontWeight: 600, fontSize: '16px', lineHeight: '24px',
-              '&:hover': { backgroundColor: '#0071BC1a' }
-            }}>Update Password</Button>
-          </Link>
-          <Link to='/edit-profile'>
-            <Button variant="contained" sx={{ borderRadius: '10px', m: '5px', background: '#0071BC', py: '13px', px: '30px', fontWeight: 500, fontSize: '16px', lineHeight: '24px' }}>Edit Profile</Button>
-          </Link>
-        </div>
+        <Profile />
       </TabPanel>
       <TabPanel value={1} className='tab-data'>
         <Team />
       </TabPanel>
       <TabPanel value={2} className='tab-data'>
-        <h1>hello</h1>
+        <Billing />
       </TabPanel>
       <TabPanel value={3} className='tab-data'>
-        <h1>hello</h1>
+        <Integration />
       </TabPanel>
     </TabsUnstyled>
   )

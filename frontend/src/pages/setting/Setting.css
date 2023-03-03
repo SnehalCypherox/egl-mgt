@@ -50,3 +50,16 @@
 .user-email {
     color: #0071BC !important;
 }
+.setting-accordion > div[aria-expanded="false"] {
+    background-color:  #8080801a;
+}
+.setting-accordion > div[aria-expanded="true"] {
+    background-color:#0071BC1a;
+}
+.name-input {
+    margin: 0;
+}
+.name-input input{
+    color: #0071BC !important;
+    border: 1px solid #0071BC !important;
+}

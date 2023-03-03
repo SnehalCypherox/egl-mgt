@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataGrid, useGridSelector, useGridApiContext, gridPageCountSelector, gridPageSelector } from '@mui/x-data-grid';
 import { Pagination } from '@mui/material';
-import chatbox from '../Assets/ChatBox.png'
-import AddNewDropdown from './AddNewDropdown';
-import FilterData from './FilterData';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CommonTable = ({ columns, rows, isCheckbox }) => {
+
+  const [handleRowClick, setHandleRowClick] = useState();
 
   function CustomPagination() {
     const apiRef = useGridApiContext();
@@ -20,14 +20,29 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
       />
     )
   }
-  const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
+
+  const navigate = useNavigate();
+  let locationPath = useLocation();
+
+
+
+  function getLocationChange() {
+    if (locationPath.pathname === '/property/unit') {
+      navigate('/addUnitDetail')
+    }
+    else if (locationPath.pathname === '/property/building') {
+      navigate('/addBuildingDetail')
+    }
+    else if (locationPath.pathname === '/property/communities') {
+      navigate('/addCommunityDetail')
+    }
+  }
+  // useEffect(() => {
+  //   
+  // }, [locationPath])
 
   return (
     <>
-      {/* <AddNewDropdown
-        dropdownTitle='New Property'
-        dropdownSub={subDataDropdown}
-      /> */}
       <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '30px' }}>
         <DataGrid
           className='tble-class'
@@ -43,10 +58,10 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
           components={{
             Pagination: CustomPagination,
           }}
-          onRowClick={(e) => {
-            
-            console.log(e.row)
-          }}
+          onRowClick={(e) =>
+            { getLocationChange()
+          console.log(e.row)}
+          }
         />
       </div>
     </>

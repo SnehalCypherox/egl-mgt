@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CommonTable from '../../components/CommonTable';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Popover from '@mui/material/Popover';
 import AddNewDropdown from '../../components/AddNewDropdown';
 import FilterData from '../../components/FilterData';
+import EditModel from '../../components/Model/EditModel';
+import { unitSubMenu } from "../../data/submenuItems";
+import { buildingButtonList, communityButtonList, unitButtonList } from './propertyData';
 
 const Unit = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [selectedMenu, setselectedMenu] = React.useState(false);
+  const [selectedTitle, setselectedTitle] = React.useState("");
+  const [buttonList, setButtonList] = React.useState([]);
+
+  useEffect(() => {
+    if (selectedTitle === "Add New Unit") {
+      setButtonList(unitButtonList);
+    } else if (selectedTitle === "Add New Building") {
+      setButtonList(buildingButtonList);
+    } else if (selectedTitle === "Add New Community") {
+      setButtonList(communityButtonList);
+    }
+  }, [selectedTitle]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -52,7 +70,7 @@ const Unit = () => {
         );
       }
     }
-  ] 
+  ]
   const rows = [
     { id: 1, city: 'Sacramento', address: '9983 Aspen Meadows Ct', zipcode: '95829-8033', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
     { id: 2, city: 'Elk Grove', address: '9979 Tarzo Way', zipcode: '95757-3021', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
@@ -66,31 +84,47 @@ const Unit = () => {
     { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
   ];
 
-  console.log('unit table row', rows[0]);
+  const handleSelectedMenu = (item) => {
+    console.log("Selected Menu Item ==" + item.menuValue);
+    setselectedTitle(item.menuTitle);
+    setselectedMenu(item.menuValue);
+    handleOpenModal();
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setselectedTitle('')
+  };
+
   
-
-  const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
-
   return (
     <>
-      <div className='unit-top'>
+      <div className="unit-top">
         <AddNewDropdown
-          dropdownTitle='New Property'
-          dropdownSub={subDataDropdown}
+          menuTitle="New Property"
+          subMenuList={unitSubMenu}
+          handleSelectedMenu={handleSelectedMenu}
+          selectedMenu={selectedMenu}
         />
         <FilterData />
+        <EditModel
+          buttonList={buttonList}
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          title={selectedTitle}
+          subTitle="Fill out the details below to add a unit."
+        ></EditModel>
       </div>
       <CommonTable
-        className='unit-table'
+        className="unit-table"
         rows={rows}
         columns={columns}
         isCheckbox={true}
-        onClick={(rows) => {
-          (rows[0]) ? console.log('row') : console.log('row clicked');
-        }
-      }
       />
-      
+
     </>
 
   )

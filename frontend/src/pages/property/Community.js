@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AddNewDropdown from '../../components/AddNewDropdown';
 import CommonTable from '../../components/CommonTable'
 import FilterData from '../../components/FilterData';
+import EditModel from '../../components/Model/EditModel';
+import { unitSubMenu } from "../../data/submenuItems";
+import { buildingButtonList, communityButtonList, unitButtonList } from './propertyData';
 
 const Community = () => {
+  const [selectedMenu, setselectedMenu] = React.useState(false);
+  const [selectedTitle, setselectedTitle] = React.useState("");
+  const [buttonList, setButtonList] = React.useState([]);
+  const [openModal, setOpenModal] = React.useState(false);
+
+  useEffect(() => {
+    if (selectedTitle === "Add New Unit") {
+      setButtonList(unitButtonList);
+    } else if (selectedTitle === "Add New Building") {
+      setButtonList(buildingButtonList);
+    } else if (selectedTitle === "Add New Community") {
+      setButtonList(communityButtonList);
+    }
+  }, [selectedTitle]);
   const columns = [
     { field: 'name', headerName: 'Name', width: 150, flex: 1 },
     { field: 'address', headerName: 'Address', width: 250, flex: 1 },
@@ -27,23 +44,43 @@ const Community = () => {
     { id: 10, name: 'Sacramento', city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-' },
   ];
 
-  const subDataDropdown = ["Add New Unit", "Add New Building", "Add New Community", "Upload units"]
+  const handleSelectedMenu = (item) => {
+    console.log("Selected Menu Item ==" + item.menuValue);
+    setselectedTitle(item.menuTitle);
+    setselectedMenu(item.menuValue);
+    handleOpenModal();
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   return (
     <>
-      <div className='unit-top'>
+      <div className="unit-top">
         <AddNewDropdown
-          dropdownTitle='New Property'
-          dropdownSub={subDataDropdown}
+          menuTitle="New Property"
+          subMenuList={unitSubMenu}
+          handleSelectedMenu={handleSelectedMenu}
+          selectedMenu={selectedMenu}
         />
         <FilterData />
+        <EditModel
+          buttonList={buttonList}
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          title={selectedTitle}
+          subTitle="Fill out the details below to add a unit."
+        ></EditModel>
       </div>
       <CommonTable
-        dropdownSub={subDataDropdown}
-        dropdownTitle="New Property"
+        className="unit-table"
         rows={rows}
         columns={columns}
-        checkboxSelection={false}
+        isCheckbox={true}
       />
     </>
 
