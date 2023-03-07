@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const CommonTable = ({ columns, rows, isCheckbox }) => {
 
-  const [handleRowClick, setHandleRowClick] = useState();
 
   function CustomPagination() {
     const apiRef = useGridApiContext();

@@ -5,7 +5,7 @@ import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
-import home from '../../Assets/house.png'
+import home from '../../../Assets/house.png'
 
 const AddCommunity = ({ currentStep }) => {
   const [communityName, setCommunityName] = useState('')

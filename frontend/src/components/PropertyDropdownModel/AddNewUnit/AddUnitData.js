@@ -13,7 +13,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import home from '../../Assets/house.png'
+import home from '../../../Assets/house.png'
 
 
 

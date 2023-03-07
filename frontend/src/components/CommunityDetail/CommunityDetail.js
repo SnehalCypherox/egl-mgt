@@ -7,9 +7,11 @@ import Add from '@mui/icons-material/Add';
 import update from '../../Assets/update.png'
 import detailBuilding from '../../Assets/detailBuilding.png'
 import CommonTable from '../CommonTable';
+import { useNavigate } from 'react-router-dom';
 
 const CommunityDetail = () => {
     const [value, setValue] = React.useState('1');
+    const navigate = useNavigate();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -18,7 +20,7 @@ const CommunityDetail = () => {
     const columns = [
         { field: 'typesOfInspection', headerName: 'Type of Inspection', width: 150, editable: false, flex: 1 },
         { field: 'dueDate', headerName: 'Due Date', width: 150, editable: false, flex: 1 },
-        {field: 'status', headerName: 'Status', width: 150, editable: false, flex: 1,},
+        { field: 'status', headerName: 'Status', width: 150, editable: false, flex: 1, },
     ]
 
     const rows = [
@@ -80,7 +82,7 @@ const CommunityDetail = () => {
                         </Box>
 
                         <div className='tab-content'>
-                            <TabPanel value="1" sx={{ pt: '122px', }}>
+                            <TabPanel value="1">
                                 <CommonTable
                                     rows={rows}
                                     columns={columns}
@@ -119,6 +121,18 @@ const CommunityDetail = () => {
                             </TabPanel>
                         </div>
                     </TabContext>
+                    <div className='btns' style={{ position: 'absolute', bottom: '62px', right: '20px' }}>
+                        <Button sx={{
+                            borderRadius: '10px',
+                            background: '#0071BC1a',
+                            m: '5px', color: '#000000',
+                            py: '13px', px: '30px',
+                            fontWeight: 600,
+                            fontSize: '16px',
+                            lineHeight: '24px',
+                            '&:hover': { backgroundColor: '#0071BC1a' }
+                        }} onClick={() => navigate(-1)}>Back</Button>
+                    </div>
                 </Box>
             </div>
         </>

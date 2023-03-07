@@ -6,9 +6,12 @@ import Typography from "@mui/material/Typography";
 import close from "../../Assets/close.png";
 import ChildModel from "./ChildModel";
 import "./model.css";
-import AddUnitData from "../AddNewUnit/AddUnitData";
-import AddBuildingData from "../AddNewBuilding/AddBuilding";
-import AddCommunity from "../AddNewCommunity/AddCommunity";
+import AddUnitData from '../PropertyDropdownModel/AddNewUnit/AddUnitData.js'
+import AddBuildingData from "../PropertyDropdownModel/AddNewBuilding/AddBuilding";
+import AddCommunity from "../PropertyDropdownModel/AddNewCommunity/AddCommunity";
+import Unit from "../../pages/property/Unit";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 const style = {
@@ -36,10 +39,14 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
     };
 
     const getButtonLable = (step) => {
-        console.log("Enter into  getButtonLable ::" + step);
         return buttonList?.find((button) => button.step === step)?.label;
     };
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setCurrentStep(0)
+    },[handleCloseModal])
 
     return (
         <div>
@@ -60,6 +67,7 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                     <Typography variant="div" id="modal-modal-description" sx={{ mt: 2 }}>
                         {title === "Add New Unit" && (
                             <AddUnitData currentStep={currentStep} />
+                            
                         )}
                         {title === "Add New Building" && (
                             <AddBuildingData currentStep={currentStep} />
@@ -69,16 +77,15 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                         )}
                     </Typography>
                     <div className="flex justify-end mt-40">
-                        {(currentStep !== 1 && currentStep !== buttonList.length) && (
+                        {(currentStep !== 0 && currentStep !== buttonList.length - 2) && (
                             <Button className={` model-btn-light`} onClick={prevStep}>
                                 Back
                             </Button>
                         )}
-                        {console.log('model steps length:: = ' + buttonList.length)}
                         {currentStep !== buttonList.length && (
                             <Button className="model-btn" onClick={nextStep}>
                                 {getButtonLable(currentStep)}
-                                {console.log(getButtonLable(currentStep))}
+                                {(getButtonLable(currentStep) === '') && navigate('/inspection/active')}
                             </Button>
                         )}
                     </div>

@@ -15,9 +15,9 @@ import Model from './components/Model/EditModel';
 import Unit from './pages/property/Unit';
 import Building from './pages/property/Building';
 import Community from './pages/property/Community';
-import AddUnitData from './components/AddNewUnit/AddUnitData';
-import AddBuilding from './components/AddNewBuilding/AddBuilding';
-import AddCommunity from './components/AddNewCommunity/AddCommunity';
+import AddUnitData from './components/PropertyDropdownModel/AddNewUnit/AddUnitData';
+import AddBuilding from './components/PropertyDropdownModel/AddNewBuilding/AddBuilding';
+import AddCommunity from './components/PropertyDropdownModel/AddNewCommunity/AddCommunity';
 import Active from './pages/Inspections/Active';
 import Scheduled from './pages/Inspections/Scheduled';
 import Archive from './pages/Inspections/Archive';
@@ -27,6 +27,7 @@ import BuildingDetail from './components/BuildingDetail/BuildingDetail';
 import CommunityDetail from './components/CommunityDetail/CommunityDetail';
 import EditProfile from './pages/setting/Profile/EditProfile';
 import UpdatePassword from './pages/setting/Profile/UpdatePassword';
+import AddUnitInspection from './components/InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
 
 const AppLayout = () => {
   return (
@@ -152,6 +153,12 @@ const appRouter = createBrowserRouter([
         element:
           <AddCommunity />
       },
+      {
+        path: "inspection-modal",
+        element:
+          <AddUnitInspection />
+      }
+
     ],
   },
   {

@@ -17,7 +17,7 @@ const style = {
     p: 4,
 };
 
-const ChildModel = ({parentClose, currentStep}) => {
+const ChildModel = ({ parentClose, currentStep, buttonList }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -28,8 +28,10 @@ const ChildModel = ({parentClose, currentStep}) => {
 
     return (
         <>
-            {(currentStep === 1 || currentStep === 7) && <Button className='model-btn-light warning-close' onClick={handleOpen}>Cancel</Button>}
-            {/* {(currentStep === 1) && <Button className='model-btn-light warning-close' onClick={handleOpen}>Cancel</Button>} */}
+            {(currentStep === 0 || currentStep === buttonList.length - 2) &&
+                <Button className='model-btn-light warning-close' onClick={handleOpen}>
+                    Cancel
+                </Button>}
             <Modal
                 hideBackdrop
                 open={open}

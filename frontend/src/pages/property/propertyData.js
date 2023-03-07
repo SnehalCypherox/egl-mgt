@@ -34,6 +34,11 @@ export const unitButtonList = [
     label: "Set Up Inspection",
     value: "SET_UP_INSPECTION",
   },
+  {
+    step: 7,
+    label: "",
+    value: "",
+  },
 ];
 
 export const buildingButtonList = [
@@ -57,6 +62,16 @@ export const buildingButtonList = [
     label: "Complete Building",
     value: "COMPLETE_BUILDING",
   },
+  {
+    step: 4,
+    label: "Set Up Inspection",
+    value: "SETUP_INSPECTION",
+  },
+  {
+    step: 5,
+    label: "",
+    value: "",
+  },
 ]
 
 export const communityButtonList = [
@@ -74,6 +89,11 @@ export const communityButtonList = [
     step: 2,
     label: "Set Up Inspection",
     value: "SETUP_INSPECTION",
+  },
+  {
+    step: 3,
+    label: "",
+    value: "",
   },
 ]
 

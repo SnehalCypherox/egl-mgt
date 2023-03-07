@@ -6,6 +6,7 @@ import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 import update from '../../Assets/update.png'
 import detailBuilding from '../../Assets/detailBuilding.png'
+import { useNavigate } from 'react-router-dom';
 
 const BuildingDetail = () => {
     const [value, setValue] = React.useState('1');
@@ -13,6 +14,8 @@ const BuildingDetail = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const navigate = useNavigate()
     return (
         <>
             <div className='detail-header'>
@@ -139,6 +142,25 @@ const BuildingDetail = () => {
                             </TabPanel>
                         </div>
                     </TabContext>
+                    <div className='btns' style={{ position: 'absolute', bottom: '62px', right: '20px' }}>
+                        <Button sx={{
+                            borderRadius: '10px',
+                            background: '#0071BC1a',
+                            m: '5px', color: '#000000',
+                            py: '13px', px: '30px',
+                            fontWeight: 600,
+                            fontSize: '16px',
+                            lineHeight: '24px',
+                            '&:hover': { backgroundColor: '#0071BC1a' }
+                        }} onClick={() => navigate(-1)}>Back</Button>
+                        <Button variant="contained"
+                            sx={{
+                                borderRadius: '10px',
+                                m: '5px', color: '#FFFFFF', background: '#0071BC', py: '13px', px: '30px', fontWeight: 500, fontSize: '16px', lineHeight: '24px'
+                            }}>
+                            Delete Unit
+                        </Button>
+                    </div>
                 </Box>
             </div>
         </>

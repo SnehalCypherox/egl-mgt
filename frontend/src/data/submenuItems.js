@@ -4,3 +4,9 @@ export const unitSubMenu = [
   { menuId: 3, menuTitle: "Add New Community", menuValue: "ADD_NEW_COMMUNITY" },
   { menuId: 4, menuTitle: "Upload units", menuValue: "UPLOAD_UNITS" },
 ];
+
+export const inspectionMenu = [
+  { menuId: 1, menuTitle: "Add unit inspection", subTitle: 'Select a building to get started', menuValue: "ADD_UNIT_INSPECTION" },
+  { menuId: 2, menuTitle: "Add building inspection", menuValue: "ADD_BUILDING_INSPECTION" },
+  { menuId: 3, menuTitle: "Add community inspection", menuValue: "ADD_COMMUNITY_INSPECTION" },
+]

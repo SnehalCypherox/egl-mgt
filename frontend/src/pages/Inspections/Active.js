@@ -1,21 +1,46 @@
-import React from 'react'
-import AddNewDropdown from '../../components/AddNewDropdown';
+import { Button, Divider, Popover } from '@mui/material'
+import React, { useEffect } from 'react'
+import AddNewDropdown from '../../components/AddNewDropdown'
 import CommonTable from '../../components/CommonTable'
-import FilterData from '../../components/FilterData';
+import FilterData from '../../components/FilterData'
+import EditModel from '../../components/Model/EditModel'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Popover from '@mui/material/Popover';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { Button } from '@mui/material';
+import { buildingButtonList, communityButtonList, unitButtonList } from '../property/propertyData'
+import { inspectionMenu } from '../../data/submenuItems'
+import { extendTheme, CssVarsProvider } from '@mui/joy/styles';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
+const theme = extendTheme({
+  components: {
+    JoySelect: {
+      defaultProps: {
+        indicator: <KeyboardArrowDownIcon />,
+      },
+    },
+  },
+});
 
 const Active = () => {
-  const [status, setStatus] = React.useState('');
-
-  const handleChange = (event) => {
-    setStatus(event.target.value);
-  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [selectedMenu, setselectedMenu] = React.useState(false);
+  const [selectedTitle, setselectedTitle] = React.useState("");
+  const [selectedSubTitle, setSelectedSubTitle] = React.useState("");
+  const [buttonList, setButtonList] = React.useState([]);
+
+  useEffect(() => {
+    if (selectedTitle === "Add New Unit") {
+      setButtonList(unitButtonList);
+    } else if (selectedTitle === "Add New Building") {
+      setButtonList(buildingButtonList);
+    } else if (selectedTitle === "Add New Community") {
+      setButtonList(communityButtonList);
+    }
+  }, [selectedTitle]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -24,6 +49,22 @@ const Active = () => {
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
+  const handleSelectedMenu = (item) => {
+    console.log("Selected Menu Item ==" + item.menuValue);
+    setselectedTitle(item.menuTitle);
+    setselectedMenu(item.menuValue);
+    setSelectedSubTitle(item.menuValue);
+    handleOpenModal();
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setselectedTitle('')
+  };
 
   const columns = [
     { field: 'address', headerName: 'Address', width: 250, editable: false, flex: 1 },
@@ -89,20 +130,43 @@ const Active = () => {
     { id: 9, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Pre-Acquisition', date: '07/22/2022', status: '-', action: '-' },
     { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Annual', date: '05/22/2022', status: '-', action: '-' },
   ];
-
-  const subDataDropdown = ["Add unit inspection", "Add building inspection", "Add community inspection"]
+  
   return (
 
     <>
-      <div className='unit-top'>
+      <div className="unit-top">
         <AddNewDropdown
-          dropdownTitle='New Inspection'
-          dropdownSub={subDataDropdown}
+          menuTitle="New Inspection"
+          modelTagLine={selectedSubTitle}
+          subMenuList={inspectionMenu}
+          handleSelectedMenu={handleSelectedMenu}
+          selectedMenu={selectedMenu}
         />
+        <CssVarsProvider theme={theme} >
+          <Select className='active-select-box' defaultValue="active" sx={{ py: '13px', px: '30px', fontWeight: 600, fontSize: '16px', lineHeight: '24px', color: '#000000', backgroundColor: '#0071BC1a', border: 'unset', position: 'absolute', right: '4%', bottom: '0'}}>
+            <Option value="active">All Active</Option>
+            <Divider sx={{mx: '10px'}} />
+            <Option value="review">Awaiting Review</Option>
+            <Divider sx={{mx: '10px'}} />
+            <Option value="almost">Almost Due</Option>
+            <Divider sx={{mx: '10px'}} />
+            <Option value="overdue">Overdue</Option>
+            <Divider sx={{mx: '10px'}} />
+            <Option value="archived">Archived</Option>
+          </Select>
+        </CssVarsProvider>
         <FilterData />
+
+        <EditModel
+          buttonList={buttonList}
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          title='Add Inspection'
+          subTitle={selectedSubTitle}
+        ></EditModel>
       </div>
       <CommonTable
-        className='unit-table'
+        className="unit-table"
         rows={rows}
         columns={columns}
         isCheckbox={true}

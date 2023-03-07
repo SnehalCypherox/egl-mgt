@@ -7,6 +7,7 @@ import FilterData from '../../components/FilterData';
 import EditModel from '../../components/Model/EditModel';
 import { unitSubMenu } from "../../data/submenuItems";
 import { buildingButtonList, communityButtonList, unitButtonList } from './propertyData';
+import { useNavigate } from 'react-router-dom';
 
 const Unit = () => {
 
@@ -16,9 +17,11 @@ const Unit = () => {
   const [selectedTitle, setselectedTitle] = React.useState("");
   const [buttonList, setButtonList] = React.useState([]);
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (selectedTitle === "Add New Unit") {
-      setButtonList(unitButtonList);
+        setButtonList(unitButtonList);
     } else if (selectedTitle === "Add New Building") {
       setButtonList(buildingButtonList);
     } else if (selectedTitle === "Add New Community") {
@@ -34,7 +37,6 @@ const Unit = () => {
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
 
 
   const columns = [
@@ -85,7 +87,6 @@ const Unit = () => {
   ];
 
   const handleSelectedMenu = (item) => {
-    console.log("Selected Menu Item ==" + item.menuValue);
     setselectedTitle(item.menuTitle);
     setselectedMenu(item.menuValue);
     handleOpenModal();
@@ -99,7 +100,7 @@ const Unit = () => {
     setselectedTitle('')
   };
 
-  
+
   return (
     <>
       <div className="unit-top">
@@ -116,7 +117,13 @@ const Unit = () => {
           handleCloseModal={handleCloseModal}
           title={selectedTitle}
           subTitle="Fill out the details below to add a unit."
-        ></EditModel>
+          onClose={() => {
+            if(buttonList[6]) {
+              navigate('/inspection')
+            }
+          }}
+        >
+        </EditModel>
       </div>
       <CommonTable
         className="unit-table"
