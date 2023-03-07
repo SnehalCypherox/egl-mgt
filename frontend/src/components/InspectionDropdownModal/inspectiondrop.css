@@ -1,0 +1,17 @@
+.radio-button-action span span.Joy-checked {
+    border: 1px solid #0071BC !important;
+}
+
+.radio-button-action span span {
+    border: unset;
+    color: #0071bc26
+}
+
+.building-inspection input {
+    border-color: #0071BCa1 !important;
+    color: #0071BC !important;
+}
+.building-inspection {
+     width: 100%;
+    max-width: 290px;
+}

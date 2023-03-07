@@ -28,6 +28,7 @@ import CommunityDetail from './components/CommunityDetail/CommunityDetail';
 import EditProfile from './pages/setting/Profile/EditProfile';
 import UpdatePassword from './pages/setting/Profile/UpdatePassword';
 import AddUnitInspection from './components/InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
+import AddBuildingInspection from './components/InspectionDropdownModal/AddBuildingInspection/AddBuildingInspection';
 
 const AppLayout = () => {
   return (
@@ -51,7 +52,10 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element:
+      <>
+        <AppLayout />,
+      </>,
     children: [
       {
         path: "property",
@@ -154,9 +158,10 @@ const appRouter = createBrowserRouter([
           <AddCommunity />
       },
       {
-        path: "inspection-modal",
+        path: "/",
         element:
-          <AddUnitInspection />
+          // <AddUnitInspection />
+          <AddBuildingInspection />
       }
 
     ],
