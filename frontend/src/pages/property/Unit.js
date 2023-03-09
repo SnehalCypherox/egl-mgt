@@ -6,7 +6,7 @@ import AddNewDropdown from '../../components/AddNewDropdown';
 import FilterData from '../../components/FilterData';
 import EditModel from '../../components/Model/EditModel';
 import { unitSubMenu } from "../../data/submenuItems";
-import { buildingButtonList, communityButtonList, unitButtonList } from './propertyData';
+import { buildingButtonList, communityButtonList, unitButtonList, uploadButtonList } from './propertyData';
 import { useNavigate } from 'react-router-dom';
 
 const Unit = () => {
@@ -21,7 +21,7 @@ const Unit = () => {
 
   useEffect(() => {
     if (selectedTitle === "Add New Unit") {
-        setButtonList(unitButtonList);
+      setButtonList(unitButtonList);
     } else if (selectedTitle === "Add New Building") {
       setButtonList(buildingButtonList);
     } else if (selectedTitle === "Add New Community") {
@@ -118,7 +118,7 @@ const Unit = () => {
           title={selectedTitle}
           subTitle="Fill out the details below to add a unit."
           onClose={() => {
-            if(buttonList[6]) {
+            if (buttonList[6]) {
               navigate('/inspection')
             }
           }}

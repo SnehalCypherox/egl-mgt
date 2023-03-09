@@ -4,9 +4,10 @@ import { Pagination } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const CommonTable = ({ columns, rows, isCheckbox }) => {
-
+  const [field, setField] = useState('')
 
   function CustomPagination() {
+
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
@@ -36,10 +37,13 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
       navigate('/addCommunityDetail')
     }
   }
-  // useEffect(() => {
-  //   
-  // }, [locationPath])
 
+  const handleCellclick = (item) => {
+    setField(item)
+    if (item.field !== "action" && item.field !== '__check__') {
+      getLocationChange()
+    }
+  }
   return (
     <>
       <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '30px' }}>
@@ -50,17 +54,11 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
           pageSize={5}
           checkboxSelection={isCheckbox}
           rowsPerPageOptions={[5]}
-          showColumnRightBorder={false}
-          experimentalFeatures={{ newEditingApi: true }}
-          disableSelectionOnClick={true}
-          disableColumnSelector={true}
+          experimentalFeatures={{ newEditingApi: false }}
           components={{
             Pagination: CustomPagination,
           }}
-          onRowClick={(e) =>
-            { getLocationChange()
-          console.log(e.row)}
-          }
+          onCellClick={handleCellclick}
         />
       </div>
     </>

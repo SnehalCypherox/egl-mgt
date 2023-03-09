@@ -1,0 +1,12 @@
+.datepiker div {
+    max-width: 378px;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+    border-radius: 10px;
+}
+
+.datepiker div>input {
+    border: unset !important;
+    border-radius: 10px;
+}

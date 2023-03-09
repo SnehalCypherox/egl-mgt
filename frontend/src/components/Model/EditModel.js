@@ -12,6 +12,7 @@ import AddCommunity from "../PropertyDropdownModel/AddNewCommunity/AddCommunity"
 import Unit from "../../pages/property/Unit";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import UploadUnit from './../PropertyDropdownModel/uploadunits/UploadUnit';
 
 
 const style = {
@@ -46,7 +47,7 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
 
     useEffect(() => {
         setCurrentStep(0)
-    },[handleCloseModal])
+    }, [handleCloseModal])
 
     return (
         <div>
@@ -67,13 +68,15 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                     <Typography variant="div" id="modal-modal-description" sx={{ mt: 2 }}>
                         {title === "Add New Unit" && (
                             <AddUnitData currentStep={currentStep} />
-                            
                         )}
                         {title === "Add New Building" && (
                             <AddBuildingData currentStep={currentStep} />
                         )}
                         {title === "Add New Community" && (
                             <AddCommunity currentStep={currentStep} />
+                        )}
+                        {title === "Upload units" && (
+                            <UploadUnit closeUploadModal={handleCloseModal} />
                         )}
                     </Typography>
                     <div className="flex justify-end mt-40">
@@ -89,7 +92,9 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                             </Button>
                         )}
                     </div>
-                    <ChildModel parentClose={handleCloseModal} currentStep={currentStep} buttonList={buttonList} />
+                    {title !== "Upload units" && (
+                        <ChildModel parentClose={handleCloseModal} currentStep={currentStep} buttonList={buttonList} />
+                    )}
                 </Box>
             </Modal>
         </div >

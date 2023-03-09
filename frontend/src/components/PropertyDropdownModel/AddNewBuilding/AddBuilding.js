@@ -18,7 +18,8 @@ const AddBuilding = ({ currentStep }) => {
     const [city, setCity] = useState("");
     const [zipcode, setZipcode] = useState("");
     const [buildingName, setBuildingName] = useState('')
-    const [floors, setFloors] = useState(12)
+    const [floors, setFloors] = useState(1)
+
 
     // switch start
     const [switches, setSwitches] = React.useState(true);
@@ -127,7 +128,10 @@ const AddBuilding = ({ currentStep }) => {
                                 type="number"
                                 className='model-input'
                                 value={floors}
-                                onChange={(e) => setFloors(e.target.value)}
+                                InputProps={{ inputProps: { min: 0, max: 10 } }}
+                                onChange={(e) => {
+                                    if (floors < 1) { return setFloors(1) } else { return setFloors(e.target.value) }
+                                }}
                             />
                         </Grid>
                     </div>
@@ -185,7 +189,6 @@ const AddBuilding = ({ currentStep }) => {
                                     sx={{
                                         opacity: 1,
                                         width: 640,
-                                        border: 'unset',
                                         color: '#0071BC',
                                         "&:hover": {
                                             backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -219,7 +222,7 @@ const AddBuilding = ({ currentStep }) => {
                                 selecting one or more units from the Units tab and selecting to Add to Building.
                             </Typography>
                             <Typography sx={{ color: '#000000', textAlign: 'center', fontWeight: '600', fontSize: '16px' }}>
-                                Would you like to set up a new Inspection for the unit?
+                                Would you like to set up a new Inspection for the building?
                             </Typography>
                         </div>
                     </div>

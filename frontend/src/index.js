@@ -29,6 +29,8 @@ import EditProfile from './pages/setting/Profile/EditProfile';
 import UpdatePassword from './pages/setting/Profile/UpdatePassword';
 import AddUnitInspection from './components/InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
 import AddBuildingInspection from './components/InspectionDropdownModal/AddBuildingInspection/AddBuildingInspection';
+import CommonDatePiker from './components/Datepicker/CommonDatePiker';
+import AddCommunityInspection from './components/InspectionDropdownModal/AddCommunityInspection/AddCommunityInspection';
 
 const AppLayout = () => {
   return (
@@ -160,8 +162,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element:
-          // <AddUnitInspection />
-          <AddBuildingInspection />
+            // <AddUnitInspection />
+        // <AddBuildingInspection />
+        <AddCommunityInspection />
+        // <CommonDatePiker />
       }
 
     ],

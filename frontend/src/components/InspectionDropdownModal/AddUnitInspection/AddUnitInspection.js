@@ -271,6 +271,7 @@ const AddUnitInspection = () => {
   return (
     <>
       {getInspectionModalData()}
+
       <div className='inspection-unit-model-5'>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', }}>
           <img src={inspectioncompleted} alt="" className='inspection completed' height='auto' width='246px' style={{ margin: 'auto' }} />

@@ -122,7 +122,6 @@ const AddCommunity = ({ currentStep }) => {
                   sx={{
                     opacity: 1,
                     width: 640,
-                    border: 'unset',
                     color: '#0071BC',
                     "&:hover": {
                       backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -155,7 +154,7 @@ const AddCommunity = ({ currentStep }) => {
                 Community Name was successfully created.
               </Typography>
               <Typography sx={{ color: '#000000', textAlign: 'center', fontWeight: '600', fontSize: '16px' }}>
-                Would you like to set up a new Inspection for the unit?
+                Would you like to set up a new Inspection for the community?
               </Typography>
             </div>
           </div>
