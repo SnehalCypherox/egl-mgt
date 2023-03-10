@@ -60,7 +60,6 @@ const AddNewDropdown = ({ menuTitle, subMenuList, handleSelectedMenu }) => {
                                 onClick={() => {
                                     handleSelectedMenu(menu);
                                     handleClose();
-                                    // titleName(menu.menuTitle)
                                 }}
                             >
                                 {menu.menuTitle}

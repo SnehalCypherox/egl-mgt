@@ -13,6 +13,11 @@ import Unit from "../../pages/property/Unit";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import UploadUnit from './../PropertyDropdownModel/uploadunits/UploadUnit';
+import AddUnitInspection from './../InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
+import { inspectionMenu } from '../../data/submenuItems'
+import AddNewDropdown from "../AddNewDropdown";
+import AddBuildingInspection from "../InspectionDropdownModal/AddBuildingInspection/AddBuildingInspection";
+import AddCommunityInspection from "../InspectionDropdownModal/AddCommunityInspection/AddCommunityInspection";
 
 
 const style = {
@@ -27,7 +32,9 @@ const style = {
     p: 4,
 };
 
-const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle }) => {
+const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownClick }) => {
+
+    // console.log('dropdown inspection clicked ==',  isDropDownClick);
 
     const [currentStep, setCurrentStep] = React.useState(0);
 
@@ -42,6 +49,10 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
     const getButtonLable = (step) => {
         return buttonList?.find((button) => button.step === step)?.label;
     };
+
+    const subTagLine = (step) => {
+        return buttonList?.find((button) => button.step === step)?.subTagLine;
+    }
 
     const navigate = useNavigate()
 
@@ -63,9 +74,9 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                     </div>
                     <div id="modal-modal-title" className='model-header'>
                         <span>{title}</span>
-                        <p>{subTitle}</p>
+                        <p>{subTagLine(currentStep)}</p>
                     </div>
-                    <Typography variant="div" id="modal-modal-description" sx={{ mt: 2 }}>
+                    <Typography variant="div" id="modal-modal-description" sx={{ pt: '15px' }}>
                         {title === "Add New Unit" && (
                             <AddUnitData currentStep={currentStep} />
                         )}
@@ -78,6 +89,15 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                         {title === "Upload units" && (
                             <UploadUnit closeUploadModal={handleCloseModal} />
                         )}
+                        {isDropDownClick === "Add unit inspection" && (
+                            <AddUnitInspection currentStep={currentStep} />
+                        )}
+                        {isDropDownClick === "Add building inspection" && (
+                            <AddBuildingInspection currentStep={currentStep} />
+                        )}
+                        {isDropDownClick === "Add community inspection" && (
+                            <AddCommunityInspection currentStep={currentStep} />
+                        )}
                     </Typography>
                     <div className="flex justify-end mt-40">
                         {(currentStep !== 0 && currentStep !== buttonList.length - 2) && (
@@ -85,9 +105,12 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, subTitle })
                                 Back
                             </Button>
                         )}
+                        {console.log('total buttons == ', buttonList.length)}
                         {currentStep !== buttonList.length && (
                             <Button className="model-btn" onClick={nextStep}>
                                 {getButtonLable(currentStep)}
+                                {console.log('button currentStep = ',  getButtonLable(currentStep))}
+                                {getButtonLable(currentStep) === 'over' && handleCloseModal()}
                                 {(getButtonLable(currentStep) === '') && navigate('/inspection/active')}
                             </Button>
                         )}

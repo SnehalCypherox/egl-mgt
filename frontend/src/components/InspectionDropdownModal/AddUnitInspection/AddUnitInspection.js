@@ -5,9 +5,10 @@ import Sheet from "@mui/joy/Sheet";
 import React, { useState } from 'react'
 import inspectioncompleted from '../../../Assets/inspectioncompleted.png'
 import '../../InspectionDropdownModal/inspectiondrop.css'
+import CommonDatePiker from '../../Datepicker/CommonDatePiker';
 
 
-const AddUnitInspection = () => {
+const AddUnitInspection = ({currentStep}) => {
   const [selectUnit, setSelectUnit] = React.useState('');
   const handleChange = (event) => {
     setSelectUnit(event.target.value);
@@ -29,12 +30,14 @@ const AddUnitInspection = () => {
               sx={{ width: '100%', m: 1, maxWidth: 650 }}
             >
               <Select
+                defaultValue='6005'
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 onChange={handleChange}
                 value={selectUnit}
                 placeholder='+Add New Unit'
-                displayEmpty
+                defaultOpen={false}
+                helperText="Please select your Country"
               >
                 <MenuItem sx={{ color: '#0071BC', backgroundColor: '#0071BC1a', fontWeight: 600 }}>+Add New Unit</MenuItem>
                 <MenuItem sx={{ color: '#000000', fontWeight: 600, backgroundColor: '#8080801a' }} value={6005}>6005 Livorno Way</MenuItem>
@@ -55,7 +58,7 @@ const AddUnitInspection = () => {
               <Grid item>
                 <ListItem clssname="radiogroup-inspection-type">
                   <RadioGroup>
-                    <Grid container xs={7}>
+                    <Grid container xs={12}>
                       {[
                         "Move - in",
                         "Move - out",
@@ -88,7 +91,7 @@ const AddUnitInspection = () => {
                               [`&.${radioClasses.checked}`]: {
                                 "& label": {
                                   color: "#0071BC",
-                                  background: "white",
+                                  background: "transparent",
                                   border: '#0071BC'
                                 },
                               },
@@ -102,10 +105,11 @@ const AddUnitInspection = () => {
               </Grid>
             </Grid>
 
-            <div style={{ display: 'flex', justifyContent: 'left' }}>
+            <div style={{ display: 'flex', flexDirection: 'column',  justifyContent: 'left' }}>
               <Typography sx={{ mb: "0px", fontWeight: 600 }}>
                 Due Date
               </Typography>
+              <CommonDatePiker />
             </div>
           </div>
         )
@@ -118,7 +122,7 @@ const AddUnitInspection = () => {
             </Typography>
             <ListItem clssname="radiogroup-inspection-type">
               <RadioGroup>
-                <Grid container xs={7}>
+                <Grid container xs={12}>
                   {[
                     "Is not recurring",
                     "Daily",
@@ -149,7 +153,7 @@ const AddUnitInspection = () => {
                           [`&.${radioClasses.checked}`]: {
                             "& label": {
                               color: "#0071BC",
-                              background: "white",
+                              background: "transparant",
                               border: '#0071BC'
                             },
                           },
@@ -261,28 +265,14 @@ const AddUnitInspection = () => {
             </div>
           </div>
         )
-
-
-
+        
       default:
     }
   }
 
   return (
     <>
-      {getInspectionModalData()}
-
-      <div className='inspection-unit-model-5'>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', }}>
-          <img src={inspectioncompleted} alt="" className='inspection completed' height='auto' width='246px' style={{ margin: 'auto' }} />
-          <Typography sx={{ pt: '30px', fontSize: '26px', fontWeight: 600, color: '#0071BC', textAlign: 'center' }}>
-            Inspection Created Successfully
-          </Typography>
-          <Typography variant='span' component='span' sx={{ color: '#868686', textAlign: 'center', fontWeight: '500', fontSize: '16px' }}>
-            6005 Livorno Way
-          </Typography>
-        </div>
-      </div>
+      {getInspectionModalData(currentStep)}
     </>
 
 

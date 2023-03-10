@@ -5,12 +5,13 @@ import CommonTable from '../../components/CommonTable'
 import FilterData from '../../components/FilterData'
 import EditModel from '../../components/Model/EditModel'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { buildingButtonList, communityButtonList, unitButtonList } from '../property/propertyData'
+import { buildingButtonList, communityButtonList, inspectionCommunityButtonList, inspectionUnitButtonList, unitButtonList } from '../property/propertyData'
 import { inspectionMenu } from '../../data/submenuItems'
 import { extendTheme, CssVarsProvider } from '@mui/joy/styles';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { inspectionBuildingButtonList } from './../property/propertyData';
 
 const theme = extendTheme({
   components: {
@@ -32,12 +33,14 @@ const Active = () => {
   const [buttonList, setButtonList] = React.useState([]);
 
   useEffect(() => {
-    if (selectedTitle === "Add New Unit") {
-      setButtonList(unitButtonList);
-    } else if (selectedTitle === "Add New Building") {
-      setButtonList(buildingButtonList);
-    } else if (selectedTitle === "Add New Community") {
-      setButtonList(communityButtonList);
+    if (selectedTitle === "Add unit inspection") {
+      setButtonList(inspectionUnitButtonList);
+    }
+    else if (selectedTitle === "Add building inspection") {
+      setButtonList(inspectionBuildingButtonList);
+    }
+    else if (selectedTitle === "Add community inspection") {
+      setButtonList(inspectionCommunityButtonList);
     }
   }, [selectedTitle]);
 
@@ -51,10 +54,10 @@ const Active = () => {
   const id = open ? 'simple-popover' : undefined;
 
   const handleSelectedMenu = (item) => {
-    console.log("Selected Menu Item ==" + item.menuValue);
+    console.log("Selected Menu Item ==" + item.menuTitle);
     setselectedTitle(item.menuTitle);
     setselectedMenu(item.menuValue);
-    setSelectedSubTitle(item.menuValue);
+    setSelectedSubTitle(item.subMenuList);
     handleOpenModal();
   };
 
@@ -130,7 +133,7 @@ const Active = () => {
     { id: 9, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Pre-Acquisition', date: '07/22/2022', status: '-', action: '-' },
     { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Annual', date: '05/22/2022', status: '-', action: '-' },
   ];
-  
+
   return (
 
     <>
@@ -143,15 +146,15 @@ const Active = () => {
           selectedMenu={selectedMenu}
         />
         <CssVarsProvider theme={theme} >
-          <Select className='active-select-box' defaultValue="active" sx={{ py: '13px', px: '30px', fontWeight: 600, fontSize: '16px', lineHeight: '24px', color: '#000000', backgroundColor: '#0071BC1a', border: 'unset', position: 'absolute', right: '4%', bottom: '0'}}>
+          <Select className='active-select-box' defaultValue="active" sx={{ py: '13px', px: '30px', fontWeight: 600, fontSize: '16px', lineHeight: '24px', color: '#000000', backgroundColor: '#0071BC1a', border: 'unset', position: 'absolute', right: '4%', bottom: '0' }}>
             <Option value="active">All Active</Option>
-            <Divider sx={{mx: '10px'}} />
+            <Divider sx={{ mx: '10px' }} />
             <Option value="review">Awaiting Review</Option>
-            <Divider sx={{mx: '10px'}} />
+            <Divider sx={{ mx: '10px' }} />
             <Option value="almost">Almost Due</Option>
-            <Divider sx={{mx: '10px'}} />
+            <Divider sx={{ mx: '10px' }} />
             <Option value="overdue">Overdue</Option>
-            <Divider sx={{mx: '10px'}} />
+            <Divider sx={{ mx: '10px' }} />
             <Option value="archived">Archived</Option>
           </Select>
         </CssVarsProvider>
@@ -161,9 +164,12 @@ const Active = () => {
           buttonList={buttonList}
           openModal={openModal}
           handleCloseModal={handleCloseModal}
+          handleSelectedMenu={handleSelectedMenu}
           title='Add Inspection'
           subTitle={selectedSubTitle}
+          isDropDownClick={selectedTitle}
         ></EditModel>
+        {console.log('selected dropdown', selectedTitle)}
       </div>
       <CommonTable
         className="unit-table"

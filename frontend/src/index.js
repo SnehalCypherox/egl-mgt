@@ -163,8 +163,8 @@ const appRouter = createBrowserRouter([
         path: "/",
         element:
             // <AddUnitInspection />
-        // <AddBuildingInspection />
-        <AddCommunityInspection />
+        <AddBuildingInspection />
+        // <AddCommunityInspection />
         // <CommonDatePiker />
       }
 

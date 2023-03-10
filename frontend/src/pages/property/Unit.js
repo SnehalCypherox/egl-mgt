@@ -116,7 +116,6 @@ const Unit = () => {
           openModal={openModal}
           handleCloseModal={handleCloseModal}
           title={selectedTitle}
-          subTitle="Fill out the details below to add a unit."
           onClose={() => {
             if (buttonList[6]) {
               navigate('/inspection')

@@ -6,7 +6,7 @@ export const unitSubMenu = [
 ];
 
 export const inspectionMenu = [
-  { menuId: 1, menuTitle: "Add unit inspection", subTitle: 'Select a building to get started', menuValue: "ADD_UNIT_INSPECTION" },
+  { menuId: 1, menuTitle: "Add unit inspection",  menuValue: "ADD_UNIT_INSPECTION" },
   { menuId: 2, menuTitle: "Add building inspection", menuValue: "ADD_BUILDING_INSPECTION" },
   { menuId: 3, menuTitle: "Add community inspection", menuValue: "ADD_COMMUNITY_INSPECTION" },
 ]
