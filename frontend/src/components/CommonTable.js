@@ -28,13 +28,16 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
 
   function getLocationChange() {
     if (locationPath.pathname === '/property/unit') {
-      navigate('/addUnitDetail')
+      navigate('addUnitDetail')
     }
     else if (locationPath.pathname === '/property/building') {
-      navigate('/addBuildingDetail')
+      navigate('addBuildingDetail')
     }
     else if (locationPath.pathname === '/property/communities') {
-      navigate('/addCommunityDetail')
+      navigate('addCommunityDetail')
+    }
+    else if (locationPath.pathname === '/property/communities/addCommunityDetail') {
+      navigate('communityMaintenance')
     }
   }
 
