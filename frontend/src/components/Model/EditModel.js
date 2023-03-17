@@ -18,6 +18,7 @@ import { inspectionMenu } from '../../data/submenuItems'
 import AddNewDropdown from "../AddNewDropdown";
 import AddBuildingInspection from "../InspectionDropdownModal/AddBuildingInspection/AddBuildingInspection";
 import AddCommunityInspection from "../InspectionDropdownModal/AddCommunityInspection/AddCommunityInspection";
+import UnitdetailModal from "../UnitDetails/unitmodalSteps/UnitdetailModal";
 
 
 const style = {
@@ -32,7 +33,7 @@ const style = {
     p: 4,
 };
 
-const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownClick }) => {
+const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownClick, isUnitDetailInspection }) => {
 
     // console.log('dropdown inspection clicked ==',  isDropDownClick);
 
@@ -96,8 +97,12 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownC
                             <AddBuildingInspection currentStep={currentStep} />
                         )}
                         {isDropDownClick === "Add community inspection" && (
-                            <AddCommunityInspection currentStep={currentStep} />
+                            <AddUnitInspection currentStep={currentStep} />
                         )}
+                        {isUnitDetailInspection === "Add inspection" && (
+                            <UnitdetailModal currentStep={currentStep} />
+                        )}
+
                     </Typography>
                     <div className="flex justify-end mt-40">
                         {(currentStep !== 0 && currentStep !== buttonList.length - 2) && (
@@ -109,7 +114,7 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownC
                         {currentStep !== buttonList.length && (
                             <Button className="model-btn" onClick={nextStep}>
                                 {getButtonLable(currentStep)}
-                                {console.log('button currentStep = ',  getButtonLable(currentStep))}
+                                {console.log('button currentStep = ', getButtonLable(currentStep))}
                                 {getButtonLable(currentStep) === 'over' && handleCloseModal()}
                                 {(getButtonLable(currentStep) === '') && navigate('/inspection/active')}
                             </Button>

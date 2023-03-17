@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from '@mui/material/styles';
 import update from '../../Assets/update.png'
 import './UnitDetail.css'
@@ -9,18 +9,17 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import CommonTable from '../CommonTable';
 import detailBuilding from '../../Assets/detailBuilding.png'
-import { Grid, ListItem, Modal, Paper, Typography } from '@mui/material';
+import { Modal, Typography } from '@mui/material';
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 import { Check } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import EditModel from '../Model/EditModel';
-import DetailInspectionModal from './DetailInspectionModal';
+import { AddInspectionModal } from './DetailUnitModal';
 import close from "../../Assets/close.png";
-import ChildModel from '../Model/ChildModel';
-import CommonDatePiker from '../Datepicker/CommonDatePiker';
-import Approved from '../../Assets/approved.png'
-import Demo from '../Demo';
+import AddUnitData from './../PropertyDropdownModel/AddNewUnit/AddUnitData';
+import AddUnitInspection from './../InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
+import EditModel from '../Model/EditModel';
+import { inspectionUnitButtonList } from '../../pages/property/propertyData';
 
 
 const style = {
@@ -47,21 +46,94 @@ const Item = styled(Box)(({ theme }) => ({
 }));
 
 
-
-
-const UnitDetail = () => {
+const UpdateUnitDetail = () => {
     const [value, setValue] = useState('1');
-    const [open, setOpen] = useState(false);
-    const [openUnitUpdate, setOpenUnitUpdate] = useState(false);
-    function handleClick() {
-        setOpenUnitUpdate(true)
+
+    const [openContinueInspection, setOpenContinueInspection] = useState('Add Inspection')
+    const [buttonList, setButtonList] = React.useState([]);
+    const [openContinueInspectionModal, setOpenContinueInspectionModal] = useState(false)
+    const [openBedroomsQuick, setBedroomQuick] = useState(false)
+    const [openUpdateCity, setOpenUpdateCity] = useState(false)
+    const [openAddInspection, setAddInspection] = useState(false);
+    const [openAdditionalQuick, setOpenAdditionalQuick] = useState(false);
+    const [openCommonAreaQuick, setOpenCommonAreaQuick] = useState(false);
+    const [openMultiFamilyQuick, setOpenMultiFamilyQuick] = useState(false);
+    const [openOutsideQuick, setOpenOutsideQuick] = useState(false);
+
+    useEffect(() => {
+        if (openContinueInspection === "Add Inspection") {
+            setButtonList(inspectionUnitButtonList)
+        }
+    }, [openContinueInspection])
+
+    const handleOpenModal = () => {
+        setOpenContinueInspectionModal(true);
+    };
+    const handleCloseModal = () => {
+        // setOpenModal(false);
+        // setselectedTitle('')
+    };
+
+    const handleClose = () => {
+        setBedroomQuick(false)
+        setOpenAdditionalQuick(false)
+        setOpenUpdateCity(false)
+        setAddInspection(false)
+        setOpenCommonAreaQuick(false)
+        setOpenMultiFamilyQuick(false)
+        setOpenOutsideQuick(false)
+    }
+    function handleModalAddInspection(e) {
+        e.preventDefault();
+        if (openAddInspection === false) {
+            setAddInspection(true)
+        }
+    }
+    const handleModalContinueInspection = () => {
+        setOpenContinueInspectionModal(current => !current);
     }
 
-    const [selectedSubTitle, setSelectedSubTitle] = useState('');
-    const [selectedTitle, setSelectedTitle] = useState('');
+    function handleQuickModalCity(e) {
+        e.preventDefault()
+        if (openUpdateCity === false) {
+            setOpenUpdateCity(true)
+        }
+    }
+    function handleQuickModal(e) {
+        e.preventDefault()
+        if (openBedroomsQuick === false) {
+            setBedroomQuick(true)
+        }
+    }
+    function handleQuickAdditional(e) {
+        e.preventDefault()
+        if (openAdditionalQuick === false) {
+            setOpenAdditionalQuick(true)
+        }
+    }
+    function handleQuickCommonArea(e) {
+        e.preventDefault()
+        if (openCommonAreaQuick === false) {
+            setOpenCommonAreaQuick(true)
+        }
+    }
+    function handleQuickMultiFamily(e) {
+        e.preventDefault()
+        if (openMultiFamilyQuick === false) {
+            setOpenMultiFamilyQuick(true)
+        }
+    }
+    function handleQuickOutsider(e) {
+        e.preventDefault()
+        if (openOutsideQuick === false) {
+            setOpenOutsideQuick(true)
+        }
+    }
 
-    const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
+
+
+
+    const [openUnitUpdate, setOpenUnitUpdate] = useState(false);
 
     const navigate = useNavigate();
 
@@ -90,18 +162,42 @@ const UnitDetail = () => {
             <div className='detail-header'>
                 <div className='left-detail'>
                     <h2 className='address'>9983 Aspen Meadows Ct</h2>
-                    <p className='edit-data'>
+                    <p className='edit-data' onClick={(e) => { handleQuickModalCity(e) }}>
                         <span>Sacramento</span>
                         <span>95829-8033</span>
                         <img src={update} alt="update icon" className='cursor-pointer'
                             style={{
                                 width: '10px'
                             }} />
+                        {openUpdateCity && (
+                            <Modal
+                                open={openUpdateCity}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style} className='model-box'>
+                                    <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                        Update Property Address
+                                    </Typography>
+                                    <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                        <img src={close} alt="" />
+                                    </div>
+                                    <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                        1 Windance Ct, Sacramento 95823-6944
+                                    </Typography>
+                                    <AddUnitData currentStep={0} />
+                                    <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                        <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                        <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                    </Typography>
+                                </Box>
+                            </Modal>
+                        )}
                     </p>
                     <p className='edit-data'>Eagle Property Management</p>
                 </div>
                 <div className='right-detail-btn'>
-
                     <Button sx={{
                         color: '#FFFFFF', backgroundColor: '#0071BC',
                         '&:hover': {
@@ -109,11 +205,48 @@ const UnitDetail = () => {
                             color: '#FFFFFF'
                         }
                     }} startDecorator={<Add />}
-                        onClick={handleClick}
+                        onClick={(e) => { handleModalAddInspection(e) }}
                     >
-                        {
-                            openUnitUpdate && <DetailInspectionModal openUnitUpdate={openUnitUpdate} />
-                        }
+                        {openAddInspection && (
+                            <Modal
+                                open={openAddInspection}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style} className='model-box'>
+                                    <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                        Add Inspection
+                                    </Typography>
+                                    <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                        <img src={close} alt="" />
+                                    </div>
+                                    <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                        Confirm unit details to continue.
+                                    </Typography>
+                                    <AddInspectionModal />
+                                    <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                        <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                        <Button onClick={handleModalContinueInspection}
+                                            sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">
+                                            continue
+                                        </Button>
+                                        {
+                                            openContinueInspectionModal && (
+                                                <EditModel
+                                                    buttonList={buttonList}
+                                                    openModal={openContinueInspectionModal}
+                                                    handleCloseModal={handleClose}
+                                                    title='Add Inspection'
+                                                    isUnitDetailInspection={openContinueInspection}
+                                                ></EditModel>
+                                            )
+                                        }
+
+                                    </Typography>
+                                </Box>
+                            </Modal>
+                        )}
                         Add Inspection
                     </Button>
                 </div>
@@ -123,7 +256,34 @@ const UnitDetail = () => {
                     <div className='quick-1'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Bedrooms</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={handleQuickModal}>
+                                <img src={update} alt="update icon" height='10px' />
+                                {openBedroomsQuick && (
+                                    <Modal
+                                        open={openBedroomsQuick}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style} className='model-box'>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                                Update Bedrooms & Bathrooms
+                                            </Typography>
+                                            <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                                <img src={close} alt="" />
+                                            </div>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                                Adress, City, Zip Code
+                                            </Typography>
+                                            <AddUnitData currentStep={2} />
+                                            <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                )}
+                            </Button>
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Bedrooms</Typography>
@@ -141,7 +301,9 @@ const UnitDetail = () => {
                     <div className='quick-2'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Full Bathroom</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={handleQuickModal}>
+                                <img src={update} alt="update icon" height='10px' />
+                            </Button>
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Full Bathroom</Typography>
@@ -155,7 +317,9 @@ const UnitDetail = () => {
                     <div className='quick-3'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Half Bathr...</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={handleQuickModal}>
+                                <img src={update} alt="update icon" height='10px' />
+                            </Button>
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Half Bathroom</Typography>
@@ -165,7 +329,34 @@ const UnitDetail = () => {
                     <div className='quick-4'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Additional...</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={(e) => { handleQuickAdditional(e) }}>
+                                <img src={update} alt="update icon" height='10px' />
+                                {openAdditionalQuick && (
+                                    <Modal
+                                        open={openAdditionalQuick}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style} className='model-box'>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                                Update Additional Rooms
+                                            </Typography>
+                                            <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                                <img src={close} alt="" />
+                                            </div>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                                Adress, City, Zip Code
+                                            </Typography>
+                                            <AddUnitData currentStep={3} />
+                                            <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                )}
+                            </Button>
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Kitchen</Typography>
@@ -187,7 +378,34 @@ const UnitDetail = () => {
                     <div className='quick-5'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Common A...</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={(e) => { handleQuickCommonArea(e) }}>
+                                <img src={update} alt="update icon" height='10px' />
+                            </Button>
+                            {openCommonAreaQuick && (
+                                <Modal
+                                    open={openCommonAreaQuick}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style} className='model-box'>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                            Update Common Areas
+                                        </Typography>
+                                        <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                            <img src={close} alt="" />
+                                        </div>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                            Adress, City, Zip Code
+                                        </Typography>
+                                        <AddUnitData currentStep={4} />
+                                        <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                        </Typography>
+                                    </Box>
+                                </Modal>
+                            )}
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Stairway</Typography>
@@ -196,8 +414,72 @@ const UnitDetail = () => {
                     </div>
                     <div className='quick-6'>
                         <div className='unit-detail-menu-edit cursor-pointer'>
+                            <Typography className='mainTitle'>Outside</Typography>
+                            <Button onClick={(e) => { handleQuickOutsider(e) }}>
+                                <img src={update} alt="update icon" height='10px' />
+                            </Button>
+                            {openOutsideQuick && (
+                                <Modal
+                                    open={openOutsideQuick}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style} className='model-box'>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                            Update Outside Rooms
+                                        </Typography>
+                                        <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                            <img src={close} alt="" />
+                                        </div>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                            Adress, City, Zip Code
+                                        </Typography>
+                                        <AddUnitData currentStep={5} />
+                                        <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                        </Typography>
+                                    </Box>
+                                </Modal>
+                            )}
+                        </div>
+                        <div className='unit-detail-subMenu'>
+                            <Typography className='subTitle'>Stairway</Typography>
+                            <Check fontSize='10px' color='#00000080' />
+                        </div>
+                    </div>
+                    <div className='quick-7'>
+                        <div className='unit-detail-menu-edit cursor-pointer'>
                             <Typography className='mainTitle'>Multi-Family</Typography>
-                            <img src={update} alt="update icon" height='10px' />
+                            <Button onClick={(e) => { handleQuickMultiFamily(e) }}>
+                                <img src={update} alt="update icon" height='10px' />
+                                {openMultiFamilyQuick && (
+                                    <Modal
+                                        open={openMultiFamilyQuick}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style} className='model-box'>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                                Update Property Type
+                                            </Typography>
+                                            <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                                <img src={close} alt="" />
+                                            </div>
+                                            <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                                Adress, City, Zip Code
+                                            </Typography>
+                                            <AddUnitData currentStep={1} />
+                                            <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                )}
+                            </Button>
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Front Yard</Typography>
@@ -235,7 +517,6 @@ const UnitDetail = () => {
                                 />
                             </TabList>
                         </Box>
-
                         <div className='tab-content'>
                             <TabPanel value="1">
                                 <CommonTable
@@ -297,212 +578,8 @@ const UnitDetail = () => {
                     </div>
                 </Box>
             </div>
-            {/* inspection Modal */}
-            <div>
-                {/* <DetailInspectionModal openUnitUpdate={openUnitUpdate} /> */}
-                {/* <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <div className='close-icon cursor-pointer' onClick={handleClose}>
-                            <img src={close} alt="" />
-                        </div>
-                        <div id="modal-modal-title" className='model-header'>
-                            <span>Add Inspection</span>
-                            <p>Confirm unit details to continue.</p>
-                        </div>
-                        <div className='update-add-inspection-1'>
-                            <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ fontWeight: "600", pt: '30px', fontSize: '20px', lineHeight: '30px', color: '#000000' }}>
-                                1 Windance Ct
-                            </Typography>
-                            <Typography sx={{ fontSize: '16px', color: '#00000080', fontWeight: 500 }}>
-                                3 Bedrooms, 2 Full Bathrooms, 1 Half Bathroom
-                            </Typography>
-                            <Typography variant='div' component='div' className='grid-content'>
-                                <Box sx={{ width: '100%', py: '30px' }}>
-                                    <Grid container rowSpacing='30px' columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Front Porch
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    1 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Front Door
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    1 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Dining Room
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    4 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Living Room
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    4 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Bedroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    6 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Full Bathroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    9 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Half Bathroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    8 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Bedroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    6 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Full Bathroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    9 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Bedroom
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    6 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Laundry Room
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    6 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Item>
-                                                <Typography variant='h6' component='h6' sx={{ color: '#000000', fontWeight: '600', fontSize: '16px' }}>
-                                                    Hallway
-                                                </Typography>
-                                                <Typography variant='span' component='span' sx={{ fontSize: '12px', lineHeight: '18px', color: '#00000080' }}>
-                                                    4 step
-                                                </Typography>
-                                            </Item>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </Typography>
-                        </div>
-                        <Typography variant='div' component='div' className='buttons' sx={{ display: 'flex', justifyContent: 'end' }}>
-                            <Button className="model-btn-light" sx={{ ml: 'auto' }} onClick={handleOpen}>
-                                Cancel
-                            </Button>
-                            <Button className="model-btn" sx={{ ml: 'auto' }} onClick={handleOpen}>
-                                Continue
-                            </Button>
-                        </Typography>
-                    </Box>
-                </Modal> */}
-            </div>
-            {/* <div className='update-add-inspection-2'>
-                            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                                <Grid item xs={6}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ fontWeight: "600", pt: '30px', fontSize: '16px', lineHeight: '24px', color: '#000000' }}>
-                                        Inspection Type
-                                    </Typography>
-                                    <Typography variant='span' component='span' sx={{ fontWeight: "500", pt: '30px', fontSize: '16px', lineHeight: '24px', color: '#0071BC' }}>Annual</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ fontWeight: "600", pt: '30px', fontSize: '16px', lineHeight: '24px', color: '#000000' }}>
-                                        Due Date
-                                        <img src={update} alt="update icon" height='10px' style={{ marginLeft: '10px' }} />
-                                    </Typography>
-                                    <CommonDatePiker />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ fontWeight: "600", pt: '30px', pb: '10px', fontSize: '16px', lineHeight: '24px', color: '#000000' }}>
-                                        Approval to Send
-                                    </Typography>
-                                    <Typography variant='div' component='div' sx={{ background: '#0071BC1a', color: '#0071BC', py: '12px', px: '34px', cursor: 'pointer', borderRadius: '10px', textAlign: 'center', width: 'fit-content' }}>
-                                        <img src={Approved} alt="" height='12px' width='12px' style={{ marginRight: '10px' }} />
-                                        Approved
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ fontWeight: "600", pt: '30px', pb: '10px', fontSize: '16px', lineHeight: '24px', color: '#000000' }}>
-                                        Recipient Email Address
-                                        <img src={update} alt="update icon" height='10px' style={{ marginLeft: '10px' }} />
-                                    </Typography>
-                                    <Typography variant='div' component='div' sx={{ background: '#0071BC1a', py: '12px', mb: '5px', px: '22px', cursor: 'pointer', borderRadius: '10px', color: '#000000', fontWeight: 500, fontSize: '14px', lineHeight: '21px' }}>
-                                        Loremipsum@gmail.com
-                                    </Typography>
-                                    <Typography variant='div' component='div' sx={{ background: '#0071BC1a', py: '12px', mb: '5px', px: '22px', cursor: 'pointer', borderRadius: '10px', color: '#000000', fontWeight: 500, fontSize: '14px', lineHeight: '21px' }}>
-                                        Loremipsum@gmail.com
-                                    </Typography>
-                                    <Typography variant='div' component='div' sx={{ background: '#0071BC1a', py: '12px', mb: '5px', px: '22px', cursor: 'pointer', borderRadius: '10px', color: '#000000', fontWeight: 500, fontSize: '14px', lineHeight: '21px' }}>
-                                        Loremipsum@gmail.com
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </div> */}
-
         </>
     )
 }
 
-export default UnitDetail
+export default UpdateUnitDetail

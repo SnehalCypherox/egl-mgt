@@ -16,7 +16,7 @@ const AddBuilding = ({ currentStep }) => {
     const [address1, setAddress1] = useState("");
     const [address2, setAddress2] = useState("");
     const [city, setCity] = useState("");
-    const [zipcode, setZipcode] = useState("");
+    const [zipcode, setZipcode] = useState(3131331);
     const [buildingName, setBuildingName] = useState('')
     const [floors, setFloors] = useState(1)
 
@@ -107,6 +107,7 @@ const AddBuilding = ({ currentStep }) => {
                                     Zip Code
                                 </Typography>
                                 <OutlinedInput
+                                    type='number'
                                     className='model-input'
                                     value={zipcode}
                                     placeholder="Enter your Zip Code"

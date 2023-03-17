@@ -51,11 +51,14 @@ div.detail-tab img {
 
 .unit-detail-quick-edit {
     padding: 1%;
-    margin-top: 5.4%;
 }
 
 .unit-detail-quick-edit > div {
     padding-top: 20px;
+}
+
+.unit-detail-quick-edit > div:first-child {
+    padding-top: 0;
 }
 
 .unit-detail-quick-edit .quick-edit {
@@ -76,6 +79,7 @@ div.detail-tab img {
 
 .unit-detail-subMenu {
     display: flex;
+    padding-left: 10px;
 }
 
 .unit-detail-subMenu p.subTitle {

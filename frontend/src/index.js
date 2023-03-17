@@ -27,12 +27,10 @@ import BuildingDetail from './components/BuildingDetail/BuildingDetail';
 import CommunityDetail from './components/CommunityDetail/CommunityDetail';
 import EditProfile from './pages/setting/Profile/EditProfile';
 import UpdatePassword from './pages/setting/Profile/UpdatePassword';
-import AddUnitInspection from './components/InspectionDropdownModal/AddUnitInspection/AddUnitInspection';
-import AddBuildingInspection from './components/InspectionDropdownModal/AddBuildingInspection/AddBuildingInspection';
-import CommonDatePiker from './components/Datepicker/CommonDatePiker';
-import AddCommunityInspection from './components/InspectionDropdownModal/AddCommunityInspection/AddCommunityInspection';
-import DetailInspectionModal from './components/UnitDetails/DetailInspectionModal';
 import CommunityMaintenance from './pages/Inspections/InspectionMaintainance/CommunityMaintenance';
+import UpdateUnitDetail from './components/UnitDetails/UpdateUnitDetail';
+import { DetailUnitTable } from './components/UnitDetails/DetailUnitModal';
+import ActiveDetail from './pages/Inspections/ActiveDeatil/ActiveDetail';
 
 const AppLayout = () => {
   return (
@@ -79,28 +77,26 @@ const appRouter = createBrowserRouter([
             path: "unit/addUnitDetail",
             element:
               <UnitDetail />
-          }, 
+          },
 
           {
             path: 'building',
             element: <Building />
-          },         
+          },
           {
             path: "building/addBuildingDetail",
             element:
               <BuildingDetail />
           },
-
           {
             path: 'communities',
             element: <Community />
-          }, 
+          },
           {
             path: "communities/addCommunityDetail",
             element:
               <CommunityDetail />
           },
-          
         ]
       },
       {
@@ -114,6 +110,10 @@ const appRouter = createBrowserRouter([
           {
             path: 'active',
             element: <Active />
+          },
+          {
+            path: 'active/activeDetail',
+            element: <ActiveDetail />
           },
           {
             path: 'scheduled',
@@ -146,7 +146,6 @@ const appRouter = createBrowserRouter([
         element:
           <UpdatePassword />
       },
-
       {
         path: "model",
         element:
@@ -170,13 +169,9 @@ const appRouter = createBrowserRouter([
       {
         path: "property/communities/addCommunityDetail/communityMaintenance",
         element:
-          // <AddUnitInspection />
-          // <AddBuildingInspection />
-        // <AddCommunityInspection />
-        // <CommonDatePiker />
-        // <DetailInspectionModal />
-        <CommunityMaintenance />
-      }
+          <CommunityMaintenance />
+      },
+
 
     ],
   },

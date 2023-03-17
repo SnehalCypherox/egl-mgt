@@ -22,7 +22,7 @@ const AddUnitData = ({ currentStep }) => {
     const [address1, setAddress1] = useState("");
     const [address2, setAddress2] = useState("");
     const [city, setCity] = useState("");
-    const [zipcode, setZipcode] = useState("");
+    const [zipcode, setZipcode] = useState(95829 - 8033);
 
     const [alignment, setAlignment] = useState('left');
 
@@ -61,13 +61,20 @@ const AddUnitData = ({ currentStep }) => {
     // counter over
     // switch start
     const [switches, setSwitches] = React.useState(true);
+    const [switchesOutSide, setSwitchesOutside] = React.useState(true);
     const handleChange = (event) => {
         setSwitches({
             ...switches,
             [event.target.name]: event.target.checked,
         });
     };
-    const data = ['Kitchen', 'Dining Room', 'Storage Room', 'Living Room', 'Den', 'Office', 'Laundry Room']
+    const handleChangeOutside = (event) => {
+        setSwitchesOutside({
+            ...switchesOutSide,
+            [event.target.name]: event.target.checked,
+        });
+    };
+    const additional = ['Kitchen', 'Dining Room', 'Storage Room', 'Living Room', 'Den', 'Office', 'Laundry Room']
     const facilities = ['Front Yard', 'Front Porch', 'Side Porch', 'Back Porch Or Deck', 'Garage', 'Carport', 'Backyard', 'Pool']
     const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
@@ -120,6 +127,7 @@ const AddUnitData = ({ currentStep }) => {
                                     Zip Code
                                 </Typography>
                                 <OutlinedInput
+                                    type='number'
                                     className='model-input'
                                     value={zipcode}
                                     placeholder="Enter your Zip Code"
@@ -225,7 +233,7 @@ const AddUnitData = ({ currentStep }) => {
                         </Grid>
                     </div>
                 )
-            case  3:
+            case 3:
                 return (
                     <div className='unit-model-4' style={{ margin: '0 auto' }}>
                         <Typography variant='h6' component='h6' className=" model-title">
@@ -233,7 +241,7 @@ const AddUnitData = ({ currentStep }) => {
                         </Typography>
                         <FormControl variant="filled">
                             <FormGroup>
-                                {data.map((item, index) => (
+                                {additional.map((item, index) => (
                                     <Paper
                                         sx={{
                                             boxShadow: 'none',
@@ -245,8 +253,7 @@ const AddUnitData = ({ currentStep }) => {
                                         <FormControlLabel
                                             sx={{ px: '20px', py: '10px', borderRadius: '10px' }}
                                             control={
-                                                <Switch checked={switches.item} size="small" onChange={handleChange} name={item} />
-
+                                                <Switch checked={switchesOutSide.item} size="small" onChange={handleChangeOutside} name={item} />
                                             }
                                             label={item}
                                         />
@@ -302,7 +309,7 @@ const AddUnitData = ({ currentStep }) => {
             case 5:
                 return (
                     <div className='unit-model-6' style={{ margin: '0 auto' }}>
-                        <Typography variant='h6' component='h6' className=" model-title">
+                        <Typography variant='h6' component='h6' className="model-title">
                             Select all features that apply to this Unit
                         </Typography>
                         <FormControl variant="filled">

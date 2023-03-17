@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { DataGrid, useGridSelector, useGridApiContext, gridPageCountSelector, gridPageSelector } from '@mui/x-data-grid';
 import { Pagination } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { DetailUnitTable } from './UnitDetails/DetailUnitModal';
 
 const CommonTable = ({ columns, rows, isCheckbox }) => {
   const [field, setField] = useState('')
@@ -35,6 +36,9 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
     }
     else if (locationPath.pathname === '/property/communities') {
       navigate('addCommunityDetail')
+    }
+    else if (locationPath.pathname === '/inspection/active') {
+      navigate('activeDetail')
     }
     else if (locationPath.pathname === '/property/communities/addCommunityDetail') {
       navigate('communityMaintenance')

@@ -63,13 +63,6 @@ const Scheduled = () => {
     setselectedTitle('')
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -133,6 +126,7 @@ const Scheduled = () => {
     { id: 9, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Pre-Acquisition', date: '07/22/2022', status: '-', action: '-' },
     { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Annual', date: '05/22/2022', status: '-', action: '-' },
   ];
+  
   return (
     <>
       <div className="unit-top">

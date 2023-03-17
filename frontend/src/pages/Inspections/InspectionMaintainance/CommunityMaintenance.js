@@ -2,13 +2,13 @@ import { Check } from '@mui/icons-material'
 import { Box, Button, Divider, Menu, MenuItem, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import DetailInspectionModal from '../../../components/UnitDetails/DetailInspectionModal'
 import update from '../../../Assets/update.png'
 import Add from '@mui/icons-material/Add';
 import CommonDatePiker from './../../../components/Datepicker/CommonDatePiker';
 import Popover from '@mui/material/Popover';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowDown';
+import AddCommunity from './../../../components/PropertyDropdownModel/AddNewCommunity/AddCommunity';
 
 
 const CommunityMaintenance = () => {
@@ -41,7 +41,11 @@ const CommunityMaintenance = () => {
             <div className='detail-header'>
                 <div className='left-detail'>
                     <h2 className='address'>Community Maintenance Check Inspection</h2>
-                    <p className='edit-data'>
+                    <p className='edit-data'
+                        onClick={
+                            console.log('cllicked')
+                            // <AddCommunity currentStep={0} />
+                        }>
                         <span>Add Inspection label</span>
                         <img src={update} alt="update icon" className='cursor-pointer'
                             style={{
@@ -135,11 +139,11 @@ const CommunityMaintenance = () => {
                             bottomMenu={bottomMenu}
                             open={openBottomMenu}
                             onClose={handleClose1}
-                            sx={{width: '100%', maxWidth: '200px', display: 'flex', justifyContent: 'end'}}
+                            sx={{ width: '100%', maxWidth: '200px', display: 'flex', justifyContent: 'end' }}
                             MenuListProps={{
                                 'aria-labelledby': 'basic-button',
                             }}
-                            
+
                         >
                             <MenuItem onClick={handleClose1}>Profile</MenuItem>
                             <MenuItem onClick={handleClose1}>My account</MenuItem>
