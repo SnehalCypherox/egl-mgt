@@ -12,6 +12,10 @@
   position: relative;
 }
 
+.bottom-content {
+  height: calc(100vh - 106px);
+}
+
 .btn>button {
   border-radius: 30px !important;
   width: max-content;
@@ -721,6 +725,17 @@ ul.menu-list {
   background-color: #0071bc1a;
   color: #000000;
   font-weight: 600;
+}
+.tab-active-detail div div>div>[aria-selected="true"] {
+  background-color: transparent;
+  color: #0071bc;
+  font-weight: 500;
+  border-radius: 5px;
+  border: 1px solid #006bb280;
+  padding: 10px;
+}
+.tab-active-detail div div>div>span {
+  display: none;
 }
 
 .tabing div div>div>[aria-selected="false"] {

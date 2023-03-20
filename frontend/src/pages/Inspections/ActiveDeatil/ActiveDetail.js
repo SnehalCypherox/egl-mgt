@@ -2,9 +2,10 @@ import { Button, Divider, Popover, Typography } from '@mui/material'
 import React from 'react'
 import CommonDatePiker from '../../../components/Datepicker/CommonDatePiker'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import update from '../../../Assets/update.png'
+import BasicTabs from '../../../components/AnnualTab/AnnualTab'
+import { useNavigate } from 'react-router-dom';
 
-const ActiveDetail = () => {
+const ActiveDetail = ({children, value, index, ...other}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : null;
@@ -16,6 +17,15 @@ const ActiveDetail = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const navigate = useNavigate();
+
+    const manageDropDownList = [
+        {
+            name: ''
+        }
+    ]
+
     return (
         <>
             <div className='detail-header'>
@@ -45,7 +55,7 @@ const ActiveDetail = () => {
                     </Typography>
 
                 </div>
-                <Typography variant='div' component='div' sx={{  }} className='right-detail-btn' >
+                <Typography variant='div' component='div' className='right-detail-btn' >
                     <Typography sx={{ display: 'flex' }}>
                         <Button sx={{
                             borderRadius: '10px',
@@ -69,12 +79,11 @@ const ActiveDetail = () => {
                             '&:hover': { backgroundColor: '#0071BC' }
                         }}>Approve</Button>
                     </Typography>
-
                     <Button variant="contained" aria-describedby={id} onClick={handleClick}
                         endIcon={<KeyboardArrowDownIcon />}
                         sx={{
-                            borderRadius: '10px', display: 'flex', ml: 'auto',
-                            m: '5px', color: '#FFFFFF', background: '#0071BC', py: '13px', px: '30px', fontWeight: 500, fontSize: '16px', lineHeight: '24px'
+                            borderRadius: '10px', display: 'flex', ml: 'auto', mt: '45px',
+                            color: '#FFFFFF', background: '#0071BC', py: '13px', px: '70px', fontWeight: 500, fontSize: '16px', lineHeight: '24px'
                         }}>
                         Manage
                     </Button>
@@ -109,6 +118,14 @@ const ActiveDetail = () => {
                     </Popover>
                 </Typography>
             </div>
+
+            <div className='tab-active-detail'>
+                <BasicTabs />
+            </div>
+
+            <Button onClick={() => navigate(-1) } sx={{backgroundColor: '#0071BC1a', color: 'black', px: '40px', py: '13px', borderRadius: '10px', ml: 'auto', display: 'flex', fontWeight: '600', "&:hover":{backgroundColor: '#0071BC1a'}}}>
+                Back
+            </Button>
 
         </>
     )

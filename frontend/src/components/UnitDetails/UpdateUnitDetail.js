@@ -331,32 +331,32 @@ const UpdateUnitDetail = () => {
                             <Typography className='mainTitle'>Additional...</Typography>
                             <Button onClick={(e) => { handleQuickAdditional(e) }}>
                                 <img src={update} alt="update icon" height='10px' />
-                                {openAdditionalQuick && (
-                                    <Modal
-                                        open={openAdditionalQuick}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style} className='model-box'>
-                                            <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
-                                                Update Additional Rooms
-                                            </Typography>
-                                            <div className='close-icon cursor-pointer' onClick={handleClose}>
-                                                <img src={close} alt="" />
-                                            </div>
-                                            <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
-                                                Adress, City, Zip Code
-                                            </Typography>
-                                            <AddUnitData currentStep={3} />
-                                            <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
-                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
-                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
-                                            </Typography>
-                                        </Box>
-                                    </Modal>
-                                )}
                             </Button>
+                            {openAdditionalQuick && (
+                                <Modal
+                                    open={openAdditionalQuick}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style} className='model-box'>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                            Update Outside Rooms
+                                        </Typography>
+                                        <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                            <img src={close} alt="" />
+                                        </div>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                            Adress, City, Zip Code
+                                        </Typography>
+                                        <AddUnitData currentStep={3} />
+                                        <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                        </Typography>
+                                    </Box>
+                                </Modal>
+                            )}
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Kitchen</Typography>
@@ -454,32 +454,32 @@ const UpdateUnitDetail = () => {
                             <Typography className='mainTitle'>Multi-Family</Typography>
                             <Button onClick={(e) => { handleQuickMultiFamily(e) }}>
                                 <img src={update} alt="update icon" height='10px' />
-                                {openMultiFamilyQuick && (
-                                    <Modal
-                                        open={openMultiFamilyQuick}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style} className='model-box'>
-                                            <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
-                                                Update Property Type
-                                            </Typography>
-                                            <div className='close-icon cursor-pointer' onClick={handleClose}>
-                                                <img src={close} alt="" />
-                                            </div>
-                                            <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
-                                                Adress, City, Zip Code
-                                            </Typography>
-                                            <AddUnitData currentStep={1} />
-                                            <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
-                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
-                                                <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
-                                            </Typography>
-                                        </Box>
-                                    </Modal>
-                                )}
                             </Button>
+                            {openMultiFamilyQuick && (
+                                <Modal
+                                    open={openMultiFamilyQuick}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style} className='model-box'>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '22px', textAlign: 'center', fontWeight: '500', lineHeight: '33px', color: '#0071BC' }}>
+                                        Update Property Type
+                                        </Typography>
+                                        <div className='close-icon cursor-pointer' onClick={handleClose}>
+                                            <img src={close} alt="" />
+                                        </div>
+                                        <Typography variant='div' component='div' sx={{ fontSize: '14px', textAlign: 'center', fontWeight: '500', lineHeight: '21px', color: '#868686', pb: '32px' }}>
+                                            Adress, City, Zip Code
+                                        </Typography>
+                                        <AddUnitData currentStep={1} />
+                                        <Typography variant='div' component='div' sx={{ display: 'flex', justifyContent: 'end', pt: '30px' }}>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB21a', color: '#000000', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Cancel</Button>
+                                            <Button onClick={handleClose} sx={{ backgroundColor: '#006BB2', color: '#FFFFFF', borderRadius: '10px', m: '5px', py: '13px', px: '30px' }} variant="contained">Save & Close</Button>
+                                        </Typography>
+                                    </Box>
+                                </Modal>
+                            )}
                         </div>
                         <div className='unit-detail-subMenu'>
                             <Typography className='subTitle'>Front Yard</Typography>

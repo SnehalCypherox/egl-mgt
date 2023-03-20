@@ -31,12 +31,13 @@ import CommunityMaintenance from './pages/Inspections/InspectionMaintainance/Com
 import UpdateUnitDetail from './components/UnitDetails/UpdateUnitDetail';
 import { DetailUnitTable } from './components/UnitDetails/DetailUnitModal';
 import ActiveDetail from './pages/Inspections/ActiveDeatil/ActiveDetail';
+import Demo from './components/Demo';
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <div className='flex'>
+      <div className='flex bottom-content'>
         <Sidebar />
         <div className='eagle-body'>
           <Outlet />
@@ -170,6 +171,11 @@ const appRouter = createBrowserRouter([
         path: "property/communities/addCommunityDetail/communityMaintenance",
         element:
           <CommunityMaintenance />
+      },
+      {
+        path: "/",
+        element:
+          <Demo />
       },
 
 
