@@ -32,6 +32,7 @@ import UpdateUnitDetail from './components/UnitDetails/UpdateUnitDetail';
 import { DetailUnitTable } from './components/UnitDetails/DetailUnitModal';
 import ActiveDetail from './pages/Inspections/ActiveDeatil/ActiveDetail';
 import Demo from './components/Demo';
+import ActiveDetailModalBody from './pages/Inspections/ActiveDeatil/ActiveDetailModalBody';
 
 const AppLayout = () => {
   return (
@@ -175,6 +176,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element:
+          // <ActiveDetailModalBody />
           <Demo />
       },
 

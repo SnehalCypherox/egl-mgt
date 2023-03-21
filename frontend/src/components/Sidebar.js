@@ -1,4 +1,3 @@
-import { ExpandMore } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 import React from 'react'
 import propertyIcon from '../Assets/Property.svg'
@@ -10,6 +9,8 @@ import arrow from '../Assets/SideView.png'
 import { Link } from 'react-router-dom'
 import logout from '../Assets/logout.svg'
 import { useNavigate } from "react-router-dom";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 
 
@@ -19,6 +20,7 @@ const Sidebar = () => {
         navigate("/signin");
     }
 
+    const [expanded, setExpanded] = React.useState(false);
 
     const data =
         [
@@ -105,42 +107,42 @@ const Sidebar = () => {
             }
         ]
 
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
     return (
 
         <div className='sidebar'>
-            <div className='collapse cursor-pointer' onClick={() => { }}>
+            <div className='collapse cursor-pointer'>
                 <img src={arrow} alt="arrow" />
             </div>
-            {data.map((item, index) => {
-                return (
-                    <Accordion className='accordian-blue' key={index}
-                    >
-                        <AccordionSummary
-                            expandIcon={<ExpandMore className='downarrow' />}
-                            aria-controls={item.info}
-                            id={item.info}
-                        >
-                            <Typography variant="div" component="div">
-                                <div className='assets'>
-                                    <img src={item.icon} alt="propertyIconBlue" style={{ marginRight: '20px' }} />
+            {
+                data.map((item) => {
+                    return (
+                        <Accordion className='accordian-blue' id={item.info} expanded={expanded === item.info} onChange={handleChange(item.info)}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon sx={{ color: '#FFFFFF' }} />}
+                                aria-controls={item.info}>
+                                <Typography variant="div" component="div">
+                                    <img src={item.icon} alt="propertyIconBlue" style={{ marginRight: '20px', width: '21px', height: '21px' }} />
                                     <span>{item.info}</span>
-                                </div>
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails className='sub-list'>
-                            <ul>
-                                {item.subData.map((innerData, index) => (
-                                    <li key={index}>
-                                        <Link to={innerData.subpath}>
-                                            {innerData.subname}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </AccordionDetails>
-                    </Accordion>
-                )
-            })}
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails className='sub-list'>
+                                <ul>
+                                    {item.subData.map((innerData) => (
+                                        <li key={innerData.id}>
+                                            <Link to={innerData.subpath}>
+                                                {innerData.subname}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </AccordionDetails>
+                        </Accordion>
+                    )
+                })
+            }
 
             <div onClick={handleClick} className='logout-btn cursor-pointer'>
                 <img src={logout} alt="" />
