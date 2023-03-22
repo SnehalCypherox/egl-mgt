@@ -8,6 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Alert } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -15,7 +16,7 @@ const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
 
     const [form, setForm] = useState({ email: '', password: '', fname: '', lname: '' })
     const [showPassword, setShowPassword] = useState(false);
-    
+
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 
@@ -37,16 +38,20 @@ const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
             });
     };
 
-    const onSubmitForm = e => {
+    const onSubmitForm = async (e) => {
         e.preventDefault();
-        if (errors.email.error && errors.password.error && errors.fname.error && errors.lname.error) {
+        
 
-            navigate("/signin")
+        if (errors.email.error && errors.password.error && errors.fname.error && errors.lname.error) {
+            axios.post('http://localhost:4000/insert', {
+                
+            })
+            // navigate("/signin")
         }
         else {
             console.log('fill first all fields');
         }
-           
+
     };
 
 
@@ -87,7 +92,7 @@ const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
                                                 <InputAdornment position="end" className='pwdshow'>
                                                     <IconButton aria-label="toggle password visibility"
                                                         onClick={handleClickShowPassword}>
-                                                            {showPassword? <VisibilityIcon />:<VisibilityOffIcon />}
+                                                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                                                     </IconButton>
                                                 </InputAdornment>
                                             }
@@ -122,7 +127,7 @@ const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
                                         )
                                     }
                                     <FormControl className='btn'>
-                                        <Button variant="contained" style={{zIndex: '99999'}} onSubmit={onSubmitForm} type="submit">{buttonTxt}</Button>
+                                        <Button variant="contained" style={{ zIndex: '99999' }} onSubmit={onSubmitForm} type="submit">{buttonTxt}</Button>
                                     </FormControl>
                                     {
                                         resetPwd && (

@@ -9,7 +9,7 @@ import CommonDatePiker from '../../Datepicker/CommonDatePiker';
 import { AddInspectionModal } from '../DetailUnitModal';
 
 
-const UnitdetailModal = ({currentStep}) => {
+const UnitdetailModal = ({ currentStep }) => {
   const [selectUnit, setSelectUnit] = React.useState('');
   const handleChange = (event) => {
     setSelectUnit(event.target.value);
@@ -27,7 +27,6 @@ const UnitdetailModal = ({currentStep}) => {
         return (
           <AddInspectionModal />
         )
-
       case 1:
         return (
           <div className='inspection-unit-model-2' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -85,7 +84,7 @@ const UnitdetailModal = ({currentStep}) => {
               </Grid>
             </Grid>
 
-            <div style={{ display: 'flex', flexDirection: 'column',  justifyContent: 'left' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'left' }}>
               <Typography sx={{ mb: "0px", fontWeight: 600 }}>
                 Due Date
               </Typography>
@@ -245,7 +244,7 @@ const UnitdetailModal = ({currentStep}) => {
             </div>
           </div>
         )
-        
+
       default:
     }
   }

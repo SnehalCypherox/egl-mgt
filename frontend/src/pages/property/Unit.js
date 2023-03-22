@@ -9,11 +9,40 @@ import { unitSubMenu } from "../../data/submenuItems";
 import { buildingButtonList, communityButtonList, unitButtonList, uploadButtonList } from './propertyData';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Alert } from '@mui/material';
+import { CircularProgress } from '@mui/material';
+
+
+const columns = [
+  { field: 'street', headerName: 'Address', width: 200 },
+  { field: 'city', headerName: 'City', width: 150 },
+  { field: 'zipcode', headerName: 'Zipcode', width: 150 },
+  { field: 'username', headerName: 'Username', width: 130 },
+  { field: 'email', headerName: 'Email', width: 200 },
+  { field: 'phone', headerName: 'Phone', width: 130 },
+];
 
 const Unit = () => {
- 
 
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        const updatedRows = response.data.map(row => ({
+          ...row,
+          city: row.address.city,
+          street: row.address.street,
+          zipcode: row.address.zipcode,
+        }));
+        setRows(updatedRows);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, []);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
@@ -41,54 +70,6 @@ const Unit = () => {
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
-
-  const columns = [
-    { field: 'address', headerName: 'Address', width: 250, editable: false, flex: 1 },
-    { field: 'city', headerName: 'City', width: 150, editable: false },
-    { field: 'zipcode', headerName: 'ZIP Code', width: 150, editable: false },
-    { field: 'type', headerName: 'Type', width: 150, editable: false },
-    { field: 'team', headerName: 'Team', width: 150, editable: false },
-    { field: 'completed', headerName: 'Last Inspection Completed ', width: 200, editable: false },
-    {
-      field: 'action', headerName: 'Action', width: 150, editable: false,
-      renderCell: () => {
-        return (
-          <>
-            <MoreHorizIcon aria-describedby={id} onClick={handleClick} />
-            <Popover
-              className='popover-dialog'
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-            >
-              <ul className='menu-list'>
-                <li>Reassing Team</li>
-                <li>Add to Building</li>
-              </ul>
-            </Popover>
-          </>
-        );
-      }
-    }
-  ]
-  const rows = [
-    { id: 1, city: 'Sacramento', address: '9983 Aspen Meadows Ct', zipcode: '95829-8033', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 2, city: 'Elk Grove', address: '9979 Tarzo Way', zipcode: '95757-3021', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 3, city: 'Elk Grove', address: '9920 Trapani Way', zipcode: '95757-0000', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 4, city: 'Sacramento', address: '9836 Mars Way', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 5, city: 'Sacramento', address: '9830 Mars Way', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 6, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 7, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 8, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 9, city: 'Sacramento', address: '9983 Aspen Meadows C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-    { id: 10, city: 'Sacramento', address: '5656 Aspen dhdhd C', zipcode: '95827-2805', type: 'Multi-Family', team: 'Eagle Property', completed: '-', action: '-' },
-  ];
 
   const handleSelectedMenu = (item) => {
     setselectedTitle(item.menuTitle);
@@ -128,12 +109,18 @@ const Unit = () => {
         >
         </EditModel>
       </div>
-      <CommonTable
-        className="unit-table"
-        rows={rows}
-        columns={columns}
-        isCheckbox={true}
-      />
+      {loading ? (
+        <CircularProgress sx={{display: 'flex', mx: 'auto', my: '15%'}} />
+      ) : (
+        <CommonTable
+          className="unit-table"
+          rows={rows}
+          columns={columns}
+          isCheckbox={true}
+        />
+      )
+      }
+
 
     </>
 

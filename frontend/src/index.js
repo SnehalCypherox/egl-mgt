@@ -31,7 +31,7 @@ import CommunityMaintenance from './pages/Inspections/InspectionMaintainance/Com
 import UpdateUnitDetail from './components/UnitDetails/UpdateUnitDetail';
 import { DetailUnitTable } from './components/UnitDetails/DetailUnitModal';
 import ActiveDetail from './pages/Inspections/ActiveDeatil/ActiveDetail';
-import Demo from './components/Demo';
+import Demo from './components/Demo/Demo';
 import ActiveDetailModalBody from './pages/Inspections/ActiveDeatil/ActiveDetailModalBody';
 
 const AppLayout = () => {

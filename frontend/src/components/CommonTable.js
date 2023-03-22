@@ -3,9 +3,15 @@ import { DataGrid, useGridSelector, useGridApiContext, gridPageCountSelector, gr
 import { Pagination } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DetailUnitTable } from './UnitDetails/DetailUnitModal';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const CommonTable = ({ columns, rows, isCheckbox }) => {
   const [field, setField] = useState('')
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [])
 
   function CustomPagination() {
 
@@ -54,19 +60,27 @@ const CommonTable = ({ columns, rows, isCheckbox }) => {
   return (
     <>
       <div className='table-grid' style={{ height: 370, width: '100%', marginTop: '30px' }}>
-        <DataGrid
-          className='tble-class'
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          checkboxSelection={isCheckbox}
-          rowsPerPageOptions={[5]}
-          experimentalFeatures={{ newEditingApi: false }}
-          components={{
-            Pagination: CustomPagination,
-          }}
-          onCellClick={handleCellclick}
-        />
+        {
+          loading ?
+            (<CircularProgress sx={{display: 'flex', mx: 'auto', my: '15%'}}/>) :
+            (
+              <DataGrid
+                className='tble-class'
+                rows={rows}
+                columns={columns}
+                pageSize={5}
+                checkboxSelection={isCheckbox}
+                rowsPerPageOptions={[5]}
+                noRowsOverlay={<CircularProgress />}
+                experimentalFeatures={{ newEditingApi: false }}
+                components={{
+                  Pagination: CustomPagination,
+                }}
+                onCellClick={handleCellclick}
+              />
+            )
+        }
+
       </div>
     </>
   )

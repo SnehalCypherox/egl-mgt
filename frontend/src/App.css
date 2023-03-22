@@ -639,7 +639,7 @@ button {
 }
 
 .tble-class [data-field="name"],
-.tble-class [data-field="address"] {
+.tble-class [data-field="street"] {
   font-weight: 600;
 }
 
