@@ -12,7 +12,7 @@ const Profile = () => {
                     <Typography variant='h5' component='h5' sx={{ color: '#000000', fontWeight: '600', fontSize: '22px', lineHeight: '33px' }}>Carlo S</Typography>
                     <Typography variant='span' sx={{ fontWeight: '400', fontSize: '16px', lineHeight: '24px', color: '#808080' }}>Property Manager</Typography>
                     <Typography variant='div' component='div' sx={{ fontWeight: '400', fontSize: '16px', lineHeight: '24px', color: '#808080', pt: '25px' }}>
-                        Email : <Link to='mailto:iamwebdevcarlo@gmail.com' className='user-email'>iamwebdevcarlo@gmail.com</Link>
+                        Email : <Link to='mailto:crazycoder08@gmail.com' className='user-email'>crazycoder08@gmail.com</Link>
                     </Typography>
                 </div>
             </Typography>

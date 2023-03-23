@@ -17,19 +17,20 @@ mongoose.connect('mongodb://localhost:27017/egl-mgt-react', {
 app.use(bodyParser.json());
 
 app.post('/insert', async (req, res) => {
+    const FirstName = req.body.firstName
+    const CompanyRole = req.body.companyRole
+
     const formData = new User({
         name: FirstName,
         role: CompanyRole
     })
-    const FirstName = req.body.firstName
-    const CompanyRole = req.body.companyRole
 
 
     try {
         await formData.save();
         res.send("inserted data..")
     } catch (err) {
-        console.log(err)
+        console.log("error while inserting data" + err)
     }
 });
 

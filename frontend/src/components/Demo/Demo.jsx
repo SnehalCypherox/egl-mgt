@@ -2,46 +2,44 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 
 function Demo() {
-    const [name, setName] = useState("")
-    const [role, setRole] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [companyRole, setCompanyRole] = useState("")
 
-    const handleSubmit = (e) => {
+    const handleInsert = async (e) => {
         e.preventDefault();
-
-        Axios.post('http://localhost:4000/insert', {
-            fullName: name,
-            companyRole: role
-        })
-    }
+        try {
+            const response = await Axios.post('http://localhost:4000/insert', {
+                firstName,
+                companyRole
+            });
+            console.log("responce data = " + response.data);
+        } catch (error) {
+            console.error("responce data error =" + error);
+        }
+    };
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <div className="logIn-form">
-                    <form onSubmit={handleSubmit}>
-                        <p>First Name</p>
-
-                        <input
-                            className="Name"
-                            type="text"
-                            placeholder="First name ..."
-                            onChange={(e) => { setName(e.target.value) }}
-                        />
-
-                        <p> Company Role</p>
-
-                        <input
-                            className="Role"
-                            type="text"
-                            placeholder="Role...."
-                            onChange={(e) => { setRole(e.target.value) }}
-                        />
-
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </header>
-        </div>
+        <form onSubmit={handleInsert}>
+            <label>
+                First Name:
+                <input
+                    type="text"
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                />
+            </label>
+            <br />
+            <label>
+                Company Role:
+                <input
+                    type="text"
+                    value={companyRole}
+                    onChange={(event) => setCompanyRole(event.target.value)}
+                />
+            </label>
+            <br />
+            <button type="submit">Insert Data</button>
+        </form>
     );
 }
 
