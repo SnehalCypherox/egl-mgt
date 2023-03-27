@@ -12,6 +12,7 @@ import axios from 'axios';
 
 
 
+
 const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
 
     const [form, setForm] = useState({ email: '', password: '', fname: '', lname: '' })
@@ -40,18 +41,13 @@ const Form = ({ formImage, isField, isLogin, buttonTxt, resetPwd }) => {
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
-        
 
         if (errors.email.error && errors.password.error && errors.fname.error && errors.lname.error) {
-            axios.post('http://localhost:4000/insert', {
-                
-            })
             // navigate("/signin")
         }
         else {
             console.log('fill first all fields');
         }
-
     };
 
 

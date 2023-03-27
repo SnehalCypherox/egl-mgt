@@ -1,39 +1,45 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
-const port = 5000;
+const Register = require('./models/dataSchema')
 
-// Connect to MongoDB
+app.use(express.json());
+app.use(cors());
+
+
 mongoose.connect('mongodb://localhost:27017/egl-mgt', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-const registrationSchema = new mongoose.Schema({
-    email: String,
-    password: String,
-    name: String,
-    lname: String,
-});
-
-const Registration = mongoose.model('Registration', registrationSchema);
-
 app.use(bodyParser.json());
 
-app.post('/sign-up', async (req, res) => {
-    const registration = new Registration(req.body);
+app.post('/register', async (req, res) => {
+    const Email = req.body.form.email
+    const Password = req.body.form.password
+    const Fname = req.body.form.email
+    const Lname = req.body.form.email
+
+    const formData = new Register({
+        email: Email,
+        password: Password,
+        fname: Fname,
+        lname: Lname
+    })
+
 
     try {
-        await registration.save();
-        res.send('Registration successful');
-    } catch (error) {
-        console.log(error);
-        res.send('Registration failed');
+        await formData.save();
+        res.send("inserted data..")
+    } catch (err) {
+        console.log("error while inserting data = " + err)
     }
 });
 
+const port = process.env.PORT || 4000;
+
 app.listen(port, () => {
-    console.log(`Server start at port ${port}`);
+    console.log(`Server started on port ${port}`);
 });

@@ -11,7 +11,7 @@ const touchErrors = errors => {
   }, {});
 };
 
-export const useLoginFormValidator = form => {
+export const useLoginFormValidator = (form, email) => {
   const [errors, setErrors] = useState({
     email: {
       error: true,
@@ -31,7 +31,7 @@ export const useLoginFormValidator = form => {
     },
   });
 
-  const validateForm = ({ form, field, errors, forceTouchErrors = false }) => {
+  const validateForm = ({ email, form, field, errors, forceTouchErrors = false }) => {
     let isValid = true;
 
     // Create a deep copy of the errors
@@ -42,36 +42,36 @@ export const useLoginFormValidator = form => {
       nextErrors = touchErrors(errors);
     }
 
-    const { email, password, fname, lname } = form;
+    const { password, fname, lname } = form;
 
     if ((field ? field === "email" : true)) {
-      const emailMessage = emailValidator(email, form);
+      const emailMessage = emailValidator(email);
       nextErrors.email.error = !emailMessage;
       nextErrors.email.message = emailMessage;
       if (!emailMessage) isValid = false;
 
     }
 
-    if ((field ? field === "password" : true)) {
-      const passwordMessage = passwordValidator(password, form);
-      nextErrors.password.error = !passwordMessage;
-      nextErrors.password.message = passwordMessage;
-      if (!passwordMessage) isValid = false;
-    }
+    // if ((field ? field === "password" : true)) {
+    //   const passwordMessage = passwordValidator(password, form);
+    //   nextErrors.password.error = !passwordMessage;
+    //   nextErrors.password.message = passwordMessage;
+    //   if (!passwordMessage) isValid = false;
+    // }
 
-    if ((field ? field === "fname" : true)) {
-      const fnameMessage = fnameValidator(fname, form);
-      nextErrors.fname.error = !fnameMessage;
-      nextErrors.fname.message = fnameMessage;
-      if (!fnameMessage) isValid = false;
-    }
+    // if ((field ? field === "fname" : true)) {
+    //   const fnameMessage = fnameValidator(fname, form);
+    //   nextErrors.fname.error = !fnameMessage;
+    //   nextErrors.fname.message = fnameMessage;
+    //   if (!fnameMessage) isValid = false;
+    // }
 
-    if ((field ? field === "lname" : true)) {
-      const lnameMessage = lnameValidator(lname, form);
-      nextErrors.lname.error = !lnameMessage;
-      nextErrors.lname.message = lnameMessage;
-      if (!lnameMessage) isValid = false;
-    }
+    // if ((field ? field === "lname" : true)) {
+    //   const lnameMessage = lnameValidator(lname, form);
+    //   nextErrors.lname.error = !lnameMessage;
+    //   nextErrors.lname.message = lnameMessage;
+    //   if (!lnameMessage) isValid = false;
+    // }
 
     setErrors(nextErrors);
 
@@ -93,7 +93,7 @@ export const useLoginFormValidator = form => {
       },
     };
 
-    validateForm({ form, field, errors: updatedErrors });
+    validateForm({ email, form, field, errors: updatedErrors });
   };
 
   return {

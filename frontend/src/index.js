@@ -173,15 +173,15 @@ const appRouter = createBrowserRouter([
         element:
           <CommunityMaintenance />
       },
-      {
-        path: "/",
-        element:
-          // <ActiveDetailModalBody />
-          <Demo />
-      },
 
 
     ],
+  },
+  {
+    path: "/demo",
+    element:
+      // <ActiveDetailModalBody />
+      <Demo />
   },
   {
     path: "/sign-up",
