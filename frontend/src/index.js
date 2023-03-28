@@ -189,7 +189,7 @@ const appRouter = createBrowserRouter([
       <SignUp />
   },
   {
-    path: "signin",
+    path: "/signin",
     element:
       <SignIn />
   },

@@ -4,13 +4,17 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const User = require('./models/dataSchema')
+const bcrypt = require('bcryptjs');
+
+require('dotenv');
+
 const jwt = require('jsonwebtoken');
 
 app.use(express.json());
 app.use(cors());
 
 
-mongoose.connect('mongodb://localhost:27017/egl-mgt-react', {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -23,6 +27,16 @@ app.post('/insert', async (req, res) => {
     const Fname = req.body.fName
     const Lname = req.body.lName
 
+    
+    const securePassword = async (password) => {
+        const passwordHash = await bcrypt.hash(password, 10);
+        console.log("Hash password = " + passwordHash);
+
+        const passwordMatch = await bcrypt.compare(password, passwordHash);
+        console.log(passwordMatch);
+    }
+    securePassword('');
+
     const formData = new User({
         email: Email,
         password: Password,
@@ -30,14 +44,38 @@ app.post('/insert', async (req, res) => {
         lName: Lname
     })
 
-
     try {
         await formData.save();
-        const token = jwt.sign({ userId: formData._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-        res.status(201).json({ token });
         res.send("inserted data..")
     } catch (err) {
-        console.log("error while insertubg" + err)
+        console.log("error while insert data" + err)
+    }
+});
+
+// login route
+app.post('/login', async (req, res) => {
+
+    const email = req.body.email
+    const password = req.body.password
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        const isMatch = bcrypt.compare(password);
+        console.log(isMatch);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign({ id: user._id }, 'secret_key');
+
+        res.json({ token });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Server error' });
     }
 });
 

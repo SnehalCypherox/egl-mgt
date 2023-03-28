@@ -22,7 +22,7 @@ const SignUp = () => {
     const handleInsert = async (e) => {
         e.preventDefault();
         try {
-            const response = await Axios.post('http://localhost:4000/insert', {
+            const response = await Axios.post('http://localhost:4000/register', {
                 email,
                 password,
                 fName,

@@ -1,0 +1,6 @@
+email,address,city,zipcode,type,team,lastinspectioncompleted,fullbathroom,halfbathrooms,features,allfeatures,bedrooms
+Test1,Qasd,      City,40.5,  Type,  Team,  Lastinspectioncompleted,49.5,4,Features,allfeatures,5
+Alfred,University,      City,41.4,  Type,  Team,  Lastinspectioncompleted,48.5,2,Features,Allfeatures,5
+Test2,Gramma,      City,41.5,  Type,  Team,  Lastinspectioncompleted,44.5,3,Features,Allfeatures,5
+Android,Electric,      City,42.5,  Type,  Team,  Lastinspectioncompleted,47.5,4,Features,Allfeatures,5
+Bumpkin,Fred,      City,43.5,  Type,  Team,  Lastinspectioncompleted,45.5,3,Features,Allfeatures,5

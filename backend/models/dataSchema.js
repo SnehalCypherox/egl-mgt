@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
 
 const ReactFormDataSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
@@ -22,25 +21,17 @@ const ReactFormDataSchema = new mongoose.Schema({
 });
 
 ReactFormDataSchema.pre('save', async function (next) {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        // Generate a password hash (salt + hash)
-        const passwordHash = await bcrypt.hash(this.password, salt);
-        // Re-assign hashed version over original, plain text password
-        this.password = passwordHash;
-        next();
-    } catch (error) {
-        next(error);
-    }
-})
+    const user = this;
 
-ReactFormDataSchema.method.isValidPassword = async function (newPassword) {
-    try {
-        return await bcrypt.compare(newPassword, this.password);
-    } catch (error) {
-        throw new Error(error);
-    }
-}
+    if (!user.isModified('password')) return next();
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash("user password = " + user.password, salt);
+    user.password = hash;
+
+    next();
+});
+
 
 const User = mongoose.model('User', ReactFormDataSchema);
 module.exports = User;
