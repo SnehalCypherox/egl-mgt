@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const User = require('./models/dataSchema')
 const bcrypt = require('bcryptjs');
+require("dotenv").config();
 
-require('dotenv');
 
 const jwt = require('jsonwebtoken');
 
@@ -14,28 +14,21 @@ app.use(express.json());
 app.use(cors());
 
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+})
+.then(() => console.log("Database connected!"))
+.catch(err => console.log(err));
 
 app.use(bodyParser.json());
 
 app.post('/insert', async (req, res) => {
     const Email = req.body.email
     const Password = req.body.password
+    // 123@
     const Fname = req.body.fName
     const Lname = req.body.lName
-
-    
-    const securePassword = async (password) => {
-        const passwordHash = await bcrypt.hash(password, 10);
-        console.log("Hash password = " + passwordHash);
-
-        const passwordMatch = await bcrypt.compare(password, passwordHash);
-        console.log(passwordMatch);
-    }
-    securePassword('');
 
     const formData = new User({
         email: Email,
@@ -53,31 +46,31 @@ app.post('/insert', async (req, res) => {
 });
 
 // login route
-app.post('/login', async (req, res) => {
+// app.post('/login', async (req, res) => {
 
-    const email = req.body.email
-    const password = req.body.password
+//     const email = req.body.email
+//     const password = req.body.password
 
-    try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'User not found' });
-        }
+//     try {
+//         const user = await User.findOne({ email });
+//         if (!user) {
+//             return res.status(400).json({ message: 'User not found' });
+//         }
 
-        const isMatch = bcrypt.compare(password);
-        console.log(isMatch);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid credentials' });
-        }
+//         const isMatch = bcrypt.compare(password);
+//         console.log(isMatch);
+//         if (!isMatch) {
+//             return res.status(400).json({ message: 'Invalid credentials' });
+//         }
 
-        const token = jwt.sign({ id: user._id }, 'secret_key');
+//         const token = jwt.sign({ id: user._id }, 'secret_key');
 
-        res.json({ token });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
+//         res.json({ token });
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// });
 
 const port = process.env.PORT || 4000;
 

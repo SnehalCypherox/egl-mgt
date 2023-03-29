@@ -1,5 +1,0 @@
-email	address	city	zipcode	type	team	lastinspectioncompleted	fullbathroom	halfbathrooms	features	allfeatures
-testasd@gmail.com	address	"city,dist"	1234	single	musk-property	lastinspection	5	10	"kitchen,dining hall,table"	"stairway,hallway"
-testqwe@gmail.com	address	"city,dist"	1234	single	unknown	endinspection	3	7	"kitchen,dining hall,table"	"stairway,hallway"
-qwe123@gmail.com	address	"city,dist"	1234	multi	elun-team	lastone	5	6	"kitchen,dining hall,table"	"stairway,hallway"
-zxc12@gmail.com	address	"city,dist"	1234	multi	unknown	inspection	6	1	"kitchen,dining hall,table"	"stairway,hallway"
