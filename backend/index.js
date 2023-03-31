@@ -7,9 +7,6 @@ const User = require('./models/dataSchema')
 const bcrypt = require('bcryptjs');
 require("dotenv").config();
 
-
-const jwt = require('jsonwebtoken');
-
 app.use(express.json());
 app.use(cors());
 
@@ -18,15 +15,14 @@ mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-.then(() => console.log("Database connected!"))
-.catch(err => console.log(err));
+    .then(() => console.log("Database connected!"))
+    .catch(err => console.log(err));
 
 app.use(bodyParser.json());
 
 app.post('/insert', async (req, res) => {
     const Email = req.body.email
     const Password = req.body.password
-    // 123@
     const Fname = req.body.fName
     const Lname = req.body.lName
 
@@ -46,31 +42,53 @@ app.post('/insert', async (req, res) => {
 });
 
 // login route
-// app.post('/login', async (req, res) => {
 
+// app.post('/login', async (req, res) => {
 //     const email = req.body.email
 //     const password = req.body.password
 
-//     try {
-//         const user = await User.findOne({ email });
+//     User.findOne({ email }, (err, user) => {
+//         if (err) return res.status(500).json({ message: err.message });
+
 //         if (!user) {
-//             return res.status(400).json({ message: 'User not found' });
+//             return res.status(401).json({ message: 'Authentication failed. User not found.' });
 //         }
 
-//         const isMatch = bcrypt.compare(password);
-//         console.log(isMatch);
-//         if (!isMatch) {
-//             return res.status(400).json({ message: 'Invalid credentials' });
-//         }
+//         user.comparePassword(password, (err, isMatch) => {
+//             if (err) return res.status(500).json({ message: err.message });
 
-//         const token = jwt.sign({ id: user._id }, 'secret_key');
+//             if (!isMatch) {
+//                 return res.status(401).json({ message: 'Authentication failed. Wrong password.' });
+//             }
+//             res.status(200).json({ message: 'Authentication successful.' });
+//         })
+//     })
 
-//         res.json({ token });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: 'Server error' });
-//     }
-// });
+// })
+
+app.post("/login", async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        user.isMatchPassword((password), (isMatch) => {
+            if (!isMatch) {
+                return res.status(400).json({ message: 'Invalid email or password' });
+            }
+            res.json({ message: 'Login successful' });
+        })
+       
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+}
+});
+
 
 const port = process.env.PORT || 4000;
 

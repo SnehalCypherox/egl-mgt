@@ -1,5 +1,5 @@
 
-import { Grid, Box, FormLabel, FormGroup, FormControl, Input, Button, Typography, InputAdornment, IconButton, Alert } from '@mui/material'
+import { Grid, Box, FormLabel, FormGroup, FormControl, Input, Button, InputAdornment, IconButton } from '@mui/material'
 import Logo from '../Assets/Logo.png'
 import vector from '../Assets/vector.png'
 import formImage from '../Assets/SignUp.png'
@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import signup from '../Assets/SignUp.png'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const [email, setEmail] = useState("")
@@ -28,14 +29,19 @@ const SignUp = () => {
                 fName,
                 lName
             });
-            console.log("responce data = " + response.data);
+            if (response.status === 200) {
+                toast.success("Registration successful!")
+                console.log("responce data = " + response);
+            }
         } catch (error) {
+            toast.error("Registration not successfully")
             console.error("responce data error =" + error);
         }
     };
 
     return (
         <>
+            <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Grid container className='grid-container' rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={6} className='grid-1'>

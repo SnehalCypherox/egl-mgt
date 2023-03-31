@@ -110,7 +110,7 @@ const EditModel = ({ openModal, handleCloseModal, buttonList, title, isDropDownC
                                 Back
                             </Button>
                         )}
-                        {console.log('total buttons == ', buttonList.length)}
+                        {buttonList.length === 0 ? null : console.log('total buttons == ', buttonList.length)}
                         {currentStep !== buttonList.length && (
                             <Button className="model-btn" onClick={nextStep}>
                                 {getButtonLable(currentStep)}

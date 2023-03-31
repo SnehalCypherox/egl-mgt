@@ -7,6 +7,8 @@ import vector from '../Assets/vector.png'
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
     const [email, setEmail] = useState("");
@@ -22,11 +24,16 @@ const SignIn = () => {
                 email: email,
                 password: password,
             });
+            toast.success('Login sucessfully')
             console.log("login responce data =" + response);
-        } catch (error) { console.log("responce data error =" + error); }
+        } catch (error) {
+            toast.error('Invalid email or password');
+            console.log("responce data error = " + error.message);
+        }
     };
     return (
         <>
+            <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Grid container className='grid-container' rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid xs={6} className='grid-1'>

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import CommonTable from '../../components/CommonTable';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Popover from '@mui/material/Popover';
 import AddNewDropdown from '../../components/AddNewDropdown';
 import FilterData from '../../components/FilterData';
 import EditModel from '../../components/Model/EditModel';
 import { unitSubMenu } from "../../data/submenuItems";
-import { buildingButtonList, communityButtonList, unitButtonList, uploadButtonList } from './propertyData';
+import { buildingButtonList, communityButtonList, unitButtonList } from './propertyData';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
@@ -44,7 +42,7 @@ const Unit = () => {
       });
   }, []);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const [selectedMenu, setselectedMenu] = React.useState(false);
   const [selectedTitle, setselectedTitle] = React.useState("");
@@ -62,14 +60,8 @@ const Unit = () => {
     }
   }, [selectedTitle]);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  // const open = Boolean(anchorEl);
+  // // const id = open ? 'simple-popover' : undefined;
 
   const handleSelectedMenu = (item) => {
     setselectedTitle(item.menuTitle);

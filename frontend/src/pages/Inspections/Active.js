@@ -12,6 +12,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { inspectionBuildingButtonList } from './../property/propertyData';
+import { Counter } from './../../data-model-context';
 
 const theme = extendTheme({
   components: {

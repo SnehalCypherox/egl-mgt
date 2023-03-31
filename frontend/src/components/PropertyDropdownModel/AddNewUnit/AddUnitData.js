@@ -15,18 +15,35 @@ import Switch from '@mui/material/Switch';
 
 import home from '../../../Assets/house.png'
 
+import modelContext from '../../../data-model-context'
+
 
 
 
 const AddUnitData = ({ currentStep }) => {
-    const [address1, setAddress1] = useState("");
-    const [address2, setAddress2] = useState("");
-    const [city, setCity] = useState("");
+    const [unitFormValue, setUnitFormValue] = useState(
+        {
+            address1: '', address2: '', city: '', zipcode: '',
+            switchesOutSide: true,
+        })
+
+    const handleFormField = e => {
+        setUnitFormValue({
+            ...unitFormValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    // case 0
+    // const [address1, setAddress1] = useState("");
+    // const [address2, setAddress2] = useState("");
+    // const [city, setCity] = useState("");
     const [zipcode, setZipcode] = useState(95829 - 8033);
 
+    // case 1
     const [alignment, setAlignment] = useState('left');
 
-    // counter
+    // counter - case 2
     const useValue = () => useState({ count1: 0, count2: 0, count3: 0, });
 
     const Context = createContext(null);
@@ -98,8 +115,9 @@ const AddUnitData = ({ currentStep }) => {
                                     marginBottom: '10px',
                                     marginTop: '10px'
                                 }}
-                                value={address1} placeholder="‘401’ Lord plaza, opp bandra........."
-                                onChange={(e) => setAddress1(e.target.value)}
+                                name="address1"
+                                value={unitFormValue.address1} placeholder="‘401’ Lord plaza, opp bandra........."
+                                onChange={handleFormField}
                             />
                             <TextareaAutosize minRows={1.5}
                                 style={{
@@ -108,8 +126,9 @@ const AddUnitData = ({ currentStep }) => {
                                     borderRadius: "10px",
                                     ml: '10px'
                                 }}
-                                value={address2} placeholder="Enter your Address"
-                                onChange={(e) => setAddress2(e.target.value)}
+                                name="address2"
+                                value={unitFormValue.address2} placeholder="Enter your Address"
+                                onChange={handleFormField}
                             />
                         </Grid>
                         <Grid container spacing={0}>
@@ -118,9 +137,11 @@ const AddUnitData = ({ currentStep }) => {
                                 <OutlinedInput
                                     className='model-input'
                                     placeholder="Enter your City"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    name="city"
+                                    value={unitFormValue.city}
+                                    onChange={handleFormField}
                                 />
+
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography variant='div' component='div' className="zipcode">
@@ -134,6 +155,7 @@ const AddUnitData = ({ currentStep }) => {
                                     onChange={(e) => setZipcode(e.target.value)}
                                 />
                             </Grid>
+
                         </Grid>
                     </div>
                 )
@@ -342,7 +364,7 @@ const AddUnitData = ({ currentStep }) => {
                     <div className='unit-model-7' style={{ margin: '0 auto' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', }}>
                             <img src={home} alt="" className='house' />
-                            <Button variant="contained" sx={{ borderRadius: '20px', fontSize: '26px', px: '50px', fontWeight: '500' }}>Unit Added!</Button>
+                            <Button variant="contained" sx={{ borderRadius: '20px', fontSize: '26px', px: '50px', fontWeight: '500', width: '100%', mx: 'auto', maxWidth: '246px' }}>Unit Added!</Button>
                             <Typography variant='span' component='span' sx={{ color: '#868686', textAlign: 'center', fontWeight: '600', fontSize: '16px' }}>Address</Typography>
                         </div>
                     </div>
